@@ -7,13 +7,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\table\Quotation */
-foreach($service as $val) {
-    echo('<pre>');
-    echo($val->id);
 
- }
-
-exit;
 ?>
 
     

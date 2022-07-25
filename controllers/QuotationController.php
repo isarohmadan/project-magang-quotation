@@ -64,7 +64,7 @@ class QuotationController extends Controller
     }
     public function actionGenPdf($id){
         // return $this->render('view-pdf',['model' => $this->findModel($id)]);
-        $find_models = TableQuotService::findOne(['id_quotation' => $id,'id_service']);
+        $find_models = TableQuotService::findOne(['id_quotation' => $id]);
         $find_service = Service::findAll(['id' => $find_models->id_service]);
         $pdf = new mpdf();
         $pdf->WriteHTML($this->renderPartial('view-pdf' , [
@@ -115,12 +115,8 @@ class QuotationController extends Controller
                 $param['Quotation']['name_company'] = str_replace(".", " ","$company_name");
               }
             if ($model->load($param) && $model->save()) {
-                $model2->id_quotation = $model->id;
-                if($model2->save()){
                     return $this->redirect(['view', 'id' => $model->id]);
-                }else {
-                    return false;
-                }         
+                  
             }
         } else {
             $model->loadDefaultValues();
@@ -135,9 +131,7 @@ class QuotationController extends Controller
         
         if($this->request->isPost){
             $req = $_POST['QuotService']['id_service'];
-            if (Yii::$app->db->createCommand()
-            ->create('quot_service', ['id_service' => $req], ['id_quotation'=>$id])
-            ->execute()) {
+            if (Yii::$app->db->createCommand()->insert('quot_service', ['id_service' => $req , 'id_quotation' => $id])->execute()) {
                 return $this->redirect(['view', 'id' => $id]);
             }
             
