@@ -1,0 +1,40 @@
+<?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'date',
+            'no_quotation',
+            'contact_person',
+            'company_address',
+            'service_type',
+            'offered_by',
+            'offered_to',
+            'servicerelation.service_name',
+            'servicerelation.service_description',
+            'servicerelation.service_status',
+            'servicerelation.registration_fee',
+        ],
+    ]) ?>
+
+
+    <div class="quot-service">
+    <?php $form = ActiveForm::begin(); ?>
+    <?= $form->field($model, 'id')->widget(Select2::classname(), [
+    'data' => $quot,
+    'options' => ['placeholder' => 'Select a state ...'],
+    'pluginOptions' => [
+        'allowClear' => true
+    ],
+]); ?>
+
+
+<?= $form->field($model, 'id')->widget(Select2::classname(), [
+ 'data' => ArrayHelper::map(QuotService::find()->all(),'id','id_service'),
+ 'language' => 'en',
+ 'options' => ['placeholder' => 'Pilih Id Service'],
+ 'pluginOptions' => [
+ 'allowClear' => true
+ ],
+ ]);
+
+ ?>
