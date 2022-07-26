@@ -64,12 +64,17 @@ class QuotationController extends Controller
     }
     public function actionGenPdf($id){
         // return $this->render('view-pdf',['model' => $this->findModel($id)]);
-        $find_models = TableQuotService::findOne(['id_quotation' => $id]);
-        $find_service = Service::findAll(['id' => $find_models->id_service]);
+        $table = new TableQuotService();
+        $result = $table->find()
+        ->select(['quot_service.*','service.*'])
+        ->innerJoin('service','service.id = quot_service.id_service')
+        ->where(['id_quotation'=>$id])
+        ->asArray()
+        ->all();
         $pdf = new mpdf();
         $pdf->WriteHTML($this->renderPartial('view-pdf' , [
             'model' => $this->findModel($id),
-            'service' => $find_service,
+            'table' => $result
 
         ]));
         $pdf->Output();
@@ -115,8 +120,12 @@ class QuotationController extends Controller
                 $param['Quotation']['name_company'] = str_replace(".", " ","$company_name");
               }
             if ($model->load($param) && $model->save()) {
+                $model2->id_quotation = $model->id;
+                if($model2->save()){
                     return $this->redirect(['view', 'id' => $model->id]);
-                  
+                }else {
+                    return false;
+                }         
             }
         } else {
             $model->loadDefaultValues();
@@ -128,12 +137,33 @@ class QuotationController extends Controller
         ]);
     }
     public function actionQuotService($id){
+        $tabel = new TableQuotService();
+        $quotService = $tabel->find()
+        ->where(['id_quotation' => $id , 'id_service' => NULL])
+        ->orderBy('id')
+        ->one();
         
+        // echo "<pre>";
+        // print_r($quotService);
+        // exit;
         if($this->request->isPost){
-            $req = $_POST['QuotService']['id_service'];
-            if (Yii::$app->db->createCommand()->insert('quot_service', ['id_service' => $req , 'id_quotation' => $id])->execute()) {
-                return $this->redirect(['view', 'id' => $id]);
+        $req = $_POST['QuotService']['id_service'];
+            
+            // kalo di id quotation tidak ada nilai kosong
+            if (isset($quotService)) {
+                if ($quotService->load($this->request->post()) && $quotService->save()) {
+                    return $this->redirect(['view', 'id' => $id]);
+                }  
+
+            }else {
+                $tabel->id_quotation = $id;
+                $tabel->id_service = $req;
+                if ($tabel->save()) {
+                    return $this->redirect(['view', 'id' => $id]);
+                }
             }
+            // kalo disini ada nilai kosong di id service
+            
             
             }
         return $this->render('quot-service');

@@ -11,11 +11,18 @@ use yii\helpers\ArrayHelper;
 <div class="quotation-form">
 <?php $form = ActiveForm::begin(); 
 ?>
-<form>
+<form autocomplete="Off">
   <div class="form-row">
-    <div class="col-md-6">
-    <?= 
-    $form->field($model,'date')->widget(DatePicker::className(),['inline'=>'false','template'=>'<div class="well well-sm" style="background-color: #fff; width:250px;height:300px;">{input}</div>','clientOptions' => [ 'autoclose' => true,'format' => 'yyyy/mm/dd']]) ?>
+    <div class="col-md-4">
+    <?= $form->field($model, 'date')->widget(DatePicker::className(), [
+    'inline' => false, 
+    'options' => ['autocomplete' => 'off'],
+    'clientOptions' => [
+        'autoclose' => true,
+        'format' => 'yyyy-mm-dd',
+        'startDate' => date('1960-01-01'),
+    ],
+]) ?>
     </div>
     <div class="form-group col-md-8">
       <?= $form->field($model, 'no_quotation')->textInput(['maxlength' => true, 'value' => $id,'readonly'=>'true']) ?>

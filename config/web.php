@@ -52,6 +52,7 @@ $config = [
         ],
         */
     ],
+    'defaultRoute' => 'quotation',
     'params' => $params,
 ];
 

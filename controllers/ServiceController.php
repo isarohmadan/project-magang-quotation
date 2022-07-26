@@ -114,10 +114,14 @@ class ServiceController extends Controller
     public function actionDelete($id)
     {
         $find_id = QuotService::findOne(['id_service' => $id]);
-        $find_id->id_service = NULL;
-        
-       if ($this->findModel($id)->delete() && $find_id->save()) {
-            return $this->redirect(['index']);
+
+       if ($this->findModel($id)->delete()) {
+            if ($find_id->delete()) {
+                return $this->redirect(['index']);
+            }else {
+                return $this->redirect(['index']);
+            }
+            
        } 
 
         

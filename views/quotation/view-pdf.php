@@ -118,14 +118,17 @@ use yii\widgets\DetailView;
                 </tr>
             </thead>
             <tbody>
-
+            <?php 
+            $no = 1;
+            foreach ($table as $key ) { ?>
                 <tr>
-                    <td style="padding: 5px;">lorem</td>
-                    <td>lorem</td>
-                    <td>lorem</td>
-                    <td>lorem</td>
-                    <td>lorem</td>
+                    <td style="padding: 5px;"><?= $no++ ?></td>
+                    <td><?= $key['service_description'] ?></td>
+                    <td><?= $key['service_status'] ?></td>
+                    <td><?= $key['registration_fee'] ?></td>
+                    <td><?= $key['registration_fee'] ?></td>
                 </tr>
+            <?php } ?>
                 <tr>
                     <td></td>
                     <td></td>
