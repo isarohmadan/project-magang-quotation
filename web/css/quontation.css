@@ -1,0 +1,66 @@
+.line {
+    margin-top: -12px;
+    border: 1px solid grey;
+}
+#header {
+    max-height: 12rem;
+    margin-bottom: 15px;
+   
+}
+
+.logo {
+    position :static;  
+    display: inline-block;     
+}
+.detelnet {
+    margin-top: -10px;
+    font-size: 20px;
+}
+
+.header-content {
+position: relative;
+font-size: 14px;
+
+}
+.header-content .logo-font {
+position: absolute;
+text-transform: uppercase;
+width: 40%;
+text-align: center;
+left:50%;
+top:-18px;
+
+}
+.header-content .start {
+align-items: center;
+display: inline-block;
+width: 40%;
+
+}
+.header-content .center {
+
+width: 30%;
+display: inline-block;
+}
+.header-content .end {
+
+width: 27%;
+display: inline-block;
+}
+
+#table-form {
+font-size: 14px;
+margin-bottom: 40px;
+}
+#table-table{
+text-align: center;
+margin: auto;
+ width: 100%;
+border-collapse: collapse;
+}
+#table-table ,thead,tbody {
+border: 1px solid black;
+}
+#table-table>thead>th{
+border: 1px solid black;
+}
