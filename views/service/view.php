@@ -34,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'service_description',
             'service_status',
             'registration_fee',
-            'servicerelation.id',
         ],
     ]) ?>
 

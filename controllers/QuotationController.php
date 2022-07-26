@@ -180,6 +180,14 @@ class QuotationController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $newId = Quotation::find()->max('id') + 1;
+        if ($newId < 10) {
+           $id = '00'.$newId;
+        }elseif ($newId<100) {
+            $id = '0'.$newId;
+        }else {
+            $id = $newId;
+        }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -187,6 +195,7 @@ class QuotationController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'id' => $id
         ]);
     }
 
@@ -200,7 +209,6 @@ class QuotationController extends Controller
     public function actionDelete($id)
     {
         $find_id = TableQuotService::findOne(['id_quotation' => $id]);
-        
        if ($this->findModel($id)->delete() && $find_id->delete() ) {
             return $this->redirect(['index']);
        }else {
