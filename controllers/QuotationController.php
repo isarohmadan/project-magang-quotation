@@ -7,6 +7,7 @@ use app\models\search\QuotationSearch;
 use app\models\table\Service;
 use app\models\table\QuotService as TableQuotService;
 use yii\web\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Mpdf\Mpdf;
@@ -63,18 +64,13 @@ class QuotationController extends Controller
         ]);
     }
     public function actionGenPdf($id){
-        // return $this->render('view-pdf',['model' => $this->findModel($id)]);
-        $table = new TableQuotService();
-        $result = $table->find()
-        ->select(['quot_service.*','service.*'])
-        ->innerJoin('service','service.id = quot_service.id_service')
-        ->where(['id_quotation'=>$id])
-        ->asArray()
+        $result = TableQuotService::find()
+        ->where(['id_quotation'=> $id])
         ->all();
         $pdf = new mpdf();
         $pdf->WriteHTML($this->renderPartial('view-pdf' , [
             'model' => $this->findModel($id),
-            'table' => $result
+            'result' => $result
 
         ]));
         $pdf->Output();
@@ -180,6 +176,14 @@ class QuotationController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $newId = Quotation::find()->max('id') + 1;
+        if ($newId < 10) {
+           $id = '00'.$newId;
+        }elseif ($newId<100) {
+            $id = '0'.$newId;
+        }else {
+            $id = $newId;
+        }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -187,6 +191,7 @@ class QuotationController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'id' => $id
         ]);
     }
 
@@ -200,7 +205,6 @@ class QuotationController extends Controller
     public function actionDelete($id)
     {
         $find_id = TableQuotService::findOne(['id_quotation' => $id]);
-        
        if ($this->findModel($id)->delete() && $find_id->delete() ) {
             return $this->redirect(['index']);
        }else {

@@ -7,7 +7,6 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\table\Quotation */
-
 ?>
 
     
@@ -17,7 +16,7 @@ use yii\widgets\DetailView;
         
         <meta charset="utf-8">
         <style>
-
+            
             .line {
                 margin-top: -12px;
                 border: 0.5px solid grey;
@@ -33,17 +32,16 @@ use yii\widgets\DetailView;
         .header-content {
             position: relative;
             font-size: 12px;
-        
-            
-            
         }
         
         #table-form {
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
             
             margin-bottom: 40px;
         }
         #table-table{
+            font-family: Arial, Helvetica, sans-serif;
             text-align: center;
             margin: auto;
             width: 100%;
@@ -51,6 +49,10 @@ use yii\widgets\DetailView;
         }
         #table-table ,thead,tbody {
             border: 1px solid black;
+        }
+        #table-table tbody {
+            border: 1px solid black;
+            text-align: left;
         }
         #table-table>thead>th{
             border: 1px solid black;
@@ -110,25 +112,28 @@ use yii\widgets\DetailView;
             <table class=""  width="90%" id="table-table" style="padding: 20px; border-collapse:collapse;">
                 <thead>
                 <tr>
-                    <th width="20px" style="padding: 20px;">NO</th>
-                    <th>Description</th>
-                    <th>Capacity</th>
-                    <th>Monthly Fee</th>
-                    <th>Registration Fee</th>
+                    <th width="20px" style="padding: 10px;">NO</th>
+                    <th width="150px">Name</th>
+                    <th width="300px">Description</th>
+                    <th>Status</th>
+                    <th>Regis fee</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
             $no = 1;
-            foreach ($table as $key ) { ?>
+            for ($i=0; $i < count($result); $i++) { 
+                $table = $result[$i]->service;
+                foreach ($table as $key) {?>
                 <tr>
                     <td style="padding: 5px;"><?= $no++ ?></td>
-                    <td><?= $key['service_description'] ?></td>
-                    <td><?= $key['service_status'] ?></td>
-                    <td><?= $key['registration_fee'] ?></td>
-                    <td><?= $key['registration_fee'] ?></td>
+                    <td style="padding: 5px;"><?= $key->service_name ?></td>
+                    <td style="padding: 5px;"><?= $key->service_description ?></td>
+                    <td style="padding: 5px;"><?= $key->service_status ?></td>
+                    <td style="padding: 5px;"><?= $key->registration_fee ?></td>
+
                 </tr>
-            <?php } ?>
+            <?php }} ?>
                 <tr>
                     <td></td>
                     <td></td>
@@ -139,9 +144,9 @@ use yii\widgets\DetailView;
             </tbody>
             </table>
 
-        <h6 style="margin-top:20px;">Terms & Condition</h6>
-        <table class="border-0"  id="table-form">
         
+        <table class="border-0"  id="table-form">
+            <tr><td><h4 style="margin-top: 20px;">Terms & Condition</h4></td></tr>
             <tr>
                 <td>1. Price above exclude tax</td>
             </tr>
