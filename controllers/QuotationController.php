@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Mpdf\Mpdf;
+use yii\filters\AccessControl;
 
 /**
  * QuotationController implements the CRUD actions for Quotation model.
@@ -25,6 +26,17 @@ class QuotationController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [ 
+                    'class' => AccessControl::className(),
+                    'only' => ['logout','index','create','update','delete','quot-service','gen-pdf','view'],
+                    'rules' => [
+                        [
+                            'actions' => ['logout','index','create','update','delete','quot-service','gen-pdf','view'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

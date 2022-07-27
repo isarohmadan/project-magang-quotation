@@ -7,6 +7,7 @@ use app\models\search\ServiceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use app\models\table\QuotService;
 
 /**
@@ -22,6 +23,17 @@ class ServiceController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [ 
+                    'class' => AccessControl::className(),
+                    'only' => ['logout','index','create','update','delete','view'],
+                    'rules' => [
+                        [
+                            'actions' => ['logout','index','create','update','delete','view'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
