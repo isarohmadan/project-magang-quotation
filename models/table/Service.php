@@ -47,4 +47,5 @@ class Service extends \yii\db\ActiveRecord
             'registration_fee' => 'Registration Fee',
         ];
     }
+ 
 }

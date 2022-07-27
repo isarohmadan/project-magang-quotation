@@ -7,6 +7,7 @@ use app\models\search\QuotationSearch;
 use app\models\table\Service;
 use app\models\table\QuotService as TableQuotService;
 use yii\web\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Mpdf\Mpdf;
@@ -63,18 +64,13 @@ class QuotationController extends Controller
         ]);
     }
     public function actionGenPdf($id){
-        // return $this->render('view-pdf',['model' => $this->findModel($id)]);
-        $table = new TableQuotService();
-        $result = $table->find()
-        ->select(['quot_service.*','service.*'])
-        ->innerJoin('service','service.id = quot_service.id_service')
-        ->where(['id_quotation'=>$id])
-        ->asArray()
+        $result = TableQuotService::find()
+        ->where(['id_quotation'=> $id])
         ->all();
         $pdf = new mpdf();
         $pdf->WriteHTML($this->renderPartial('view-pdf' , [
             'model' => $this->findModel($id),
-            'table' => $result
+            'result' => $result
 
         ]));
         $pdf->Output();

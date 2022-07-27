@@ -9,9 +9,9 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="service-form">
-
-    <?php $form = ActiveForm::begin(); ?>
-
+<?php $form = ActiveForm::begin(); ?>
+<div class="row">
+    <div class="col-md-12">
     <?= $form->field($model, 'service_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'service_description')->textInput(['maxlength' => true]) ?>
@@ -19,10 +19,17 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'service_status')->textInput() ?>
 
     <?= $form->field($model, 'registration_fee')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="float-left">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
+    </div>
+</div>
+  
+
 
     <?php ActiveForm::end(); ?>
 

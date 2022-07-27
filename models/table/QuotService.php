@@ -42,4 +42,7 @@ class QuotService extends \yii\db\ActiveRecord
             'id_service' => 'Id Service',
         ];
     }
+    public function getService(){
+        return $this->hasMany(Service::class, ['id' => 'id_service']);
+    }
 }
