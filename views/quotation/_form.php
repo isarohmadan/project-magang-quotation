@@ -18,11 +18,13 @@ use yii\bootstrap4\ActiveForm;
     'options' => ['placeholder' => 'Enter birth date ...'],
     'pluginOptions' => [
         'autoclose' => true
-    ]
+    ],
+    'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+'pickerButton' => ['title' => false],
 ]);
  ?>
   <?= $form->field($model, 'no_quotation')->textInput(['maxlength' => true, 'value' => $id,'readonly'=>'true']) ?>
-  <?= $form->field($model, 'name_company')->textInput(['maxlength' => true]) ?>
+  <?= $form->field($model, 'name_company')->textInput(['maxlength' => true , 'required' => 'required']) ?>
   <?= $form->field($model, 'contact_person')->textInput(['maxlength' => true]) ?>
   <?= $form->field($model, 'service_type')->textInput(['maxlength' => true]) ?>
   <?= $form->field($model, 'company_address')->textInput(['maxlength' => true]) ?>

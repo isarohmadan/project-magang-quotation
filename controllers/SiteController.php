@@ -18,9 +18,9 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
+            'access' => [ 
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout','index'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
@@ -71,10 +71,10 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'main_login';
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect('?r=quotation');
         }
-
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
