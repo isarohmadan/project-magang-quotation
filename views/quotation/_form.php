@@ -30,15 +30,10 @@ use yii\bootstrap4\ActiveForm;
   <?= $form->field($model, 'company_address')->textInput(['maxlength' => true]) ?>
   <?= $form->field($model, 'offered_by')->textInput(['maxlength' => true]) ?>
   <?= $form->field($model, 'offered_to')->textInput(['maxlength' => true]) ?>
+  <?= Html::submitButton('Save', ['class' => 'btn btn-primary','style'=>['width'=>'100%']]) ?>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="float-left">
-    <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
-  </div>
-</div>
+
 </form>
 <?php ActiveForm::end(); ?>
 </div>

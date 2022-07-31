@@ -22,10 +22,10 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100 wrapper">
 <?php $this->beginBody() ?>
 
-<header>
+<header class="navbar">
     <?php
     NavBar::begin([
         'brandLabel' => 'Quotation Generator',
@@ -56,12 +56,10 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 </header>
-
-<main role="main" class="flex-shrink-0">
+<div class="main_body">
+<main role="main" id="main" class="main flex-shrink-0">
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
@@ -73,8 +71,16 @@ AppAsset::register($this);
         
     </div>
 </footer>
+        </div>
 
 <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
+
+<!-- 
+<?
+// Breadcrumbs::widget([
+//             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+//         ]) 
+       ?> 

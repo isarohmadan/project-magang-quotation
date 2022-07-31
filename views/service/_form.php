@@ -19,15 +19,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'service_status')->textInput() ?>
 
     <?= $form->field($model, 'registration_fee')->textInput(['maxlength' => true]) ?>
+    <?= Html::submitButton('Save', ['class' => 'btn btn-success' ,'style' => ['width'=>'100%;']]) ?>
     </div>
+
+
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="float-left">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-        </div>
-    </div>
-</div>
+
   
 
 
