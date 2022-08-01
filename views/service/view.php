@@ -5,15 +5,14 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\table\Service */
-
+$this->title = 'View Quotation: ' . ucwords($model->service_name);
 $this->params['breadcrumbs'][] = ['label' => 'Services', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
         
 <div class="service-view">
-<h1><?= Html::encode($this->title) ?></h1>
+<h3 class="font-weight-bold ml-3"><?= Html::encode($this->title) ?></h3>
 
     <p class="pb-5 pt-3">
     <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary float-right ml-2']) ?>
@@ -27,18 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     
     <div class="contain-table">
-<div class="table-full">
-    <h4 class="display-text  text-white pl-2">Table Information</h4>
-    <table class="table table-bordered">
-        <tbody>
-            <tr>
-                <th style="width: 50% ;">ID</th>
-                <td><?= $model->id ?></td>
-            </tr>
-
-        </tbody>
-    </table>
-</div>
 <div class="form-row">
 <div class="table1 col-lg-6">
     <h4 class="display-text  text-white pl-2">Service Information</h4>

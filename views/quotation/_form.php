@@ -15,7 +15,7 @@ use yii\bootstrap4\ActiveForm;
   <div class="col-md-12">
   <?php 
   echo $form->field($model, 'date')->widget(DatePicker::classname(), [
-    'options' => ['placeholder' => 'Enter birth date ...'],
+    'options' => ['placeholder' => 'Enter date ...'],
     'pluginOptions' => [
         'autoclose' => true
     ],
@@ -36,6 +36,7 @@ use yii\bootstrap4\ActiveForm;
 
 </form>
 <?php ActiveForm::end(); ?>
+<div class="none"></div>
 </div>
 
     
