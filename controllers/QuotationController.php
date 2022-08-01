@@ -56,7 +56,6 @@ class QuotationController extends Controller
     {
         $searchModel = new QuotationSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

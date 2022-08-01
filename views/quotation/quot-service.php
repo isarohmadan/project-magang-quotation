@@ -7,8 +7,13 @@ use app\models\table\Service;
 use kartik\select2\Select2;
 $quot = new QuotService();
 ?>
-<?php $form = ActiveForm::Begin() ?>
-<?= $form->field($quot, 'id_service')->widget(Select2::classname(), [
+<div class="quotation-form">
+<?php $form = ActiveForm::begin(); 
+?>
+<form autocomplete="Off">
+<div class="row">
+  <div class="col-md-12">
+  <?= $form->field($quot, 'id_service')->widget(Select2::classname(), [
  'data' => ArrayHelper::map(Service::find()->all(),'id','service_name'),
  'language' => 'en',
  'options' => ['placeholder' => 'Pilih Id Service'],
@@ -16,8 +21,11 @@ $quot = new QuotService();
  'allowClear' => true
  ],
  ]); ?>
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>  
-    <?php ActiveForm::end();?>
+    <?= Html::submitButton('Save', ['class' => 'btn btn-primary','style'=>['width'=>'100%']]) ?>
+  </div>
+    
+</div>
+
+</form>
+<?php ActiveForm::end(); ?>
 </div>

@@ -18,7 +18,7 @@ class QuotationSearch extends Quotation
     {
         return [
             [['id'], 'integer'],
-            [['date', 'no_quotation', 'contact_person', 'company_address', 'service_type', 'offered_by', 'offered_to'], 'safe'],
+            [['date', 'no_quotation', 'contact_person','name_company', 'company_address', 'service_type', 'offered_by', 'offered_to'], 'safe'],
         ];
     }
 
@@ -64,6 +64,7 @@ class QuotationSearch extends Quotation
 
         $query->andFilterWhere(['like', 'no_quotation', $this->no_quotation])
             ->andFilterWhere(['like', 'contact_person', $this->contact_person])
+            ->andFilterWhere(['like', 'name_company', $this->name_company])
             ->andFilterWhere(['like', 'company_address', $this->company_address])
             ->andFilterWhere(['like', 'service_type', $this->service_type])
             ->andFilterWhere(['like', 'offered_by', $this->offered_by])
