@@ -51,7 +51,7 @@ AppAsset::register($this);
                 . Html::endForm()
                 . '</li>'
             )
-        ],
+        ],  
     ]);
     NavBar::end();
     ?>
@@ -64,13 +64,14 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </main> 
-
-<footer class="footer mt-auto py-3 text-muted">
+<div class="content-footer">
+<footer class="footer fixed-bottom mt-auto text-muted">
     <div class="container">
-        <p class="float-left">Quotation Generator </p>
-        
+        <p class="float-left">&copy; Pt.Gerbang Akses  <?= date('Y') ?></p>
+        <p class="float-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
+</div>
         </div>
 
 <?php $this->endBody() ?>

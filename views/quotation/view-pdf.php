@@ -74,10 +74,7 @@ use yii\widgets\DetailView;
 
        }
        #table-table th {
-            background-color: #999;
-       }
-       #table-table td {
-            background-color: #c7c7c7;
+            background-color: #d5dce2;
        }
     
 
@@ -90,8 +87,8 @@ use yii\widgets\DetailView;
 
     <div class="contain-table">
 <div class="table-full">
-    <h3 style="background-color: #999;padding: 10px;margin-bottom:0px;border-radius:2px;">Table Information</h3>
-    <table class="table table-bordered" style="padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+    <h3 style="background-color: #d5dce2;padding: 10px;margin-bottom:0px;border-radius:2px;">Table Information</h3>
+    <table class="table table-bordered" style="font-size:12px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
         <tbody>
             <tr>
                 <td width="60%" style="font-weight: bold;">ID</td>
@@ -110,8 +107,8 @@ use yii\widgets\DetailView;
 </div>
 <div class="row">
 <div class="table1" style="float: right; width: 50%;">
-    <h3 style="background-color: #999;padding: 10px;margin-bottom:0px;border-radius:2px; width:100%;">Company Information</h3>
-    <table class="table table-bordered" style="padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+    <h3 style="background-color: #d5dce2;padding: 10px;margin-bottom:0px;border-radius:2px; width:100%;">Company Information</h3>
+    <table class="table table-bordered" style="font-size:12px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
         <tbody>
             <tr>
                 <td width="60%" style="font-weight: bold;">Name</td>
@@ -133,8 +130,8 @@ use yii\widgets\DetailView;
     </table>
 </div>
 <div class="table1">
-    <h3 style="background-color: #999;padding: 10px;margin-bottom:0px;border-radius:2px;width:90%;">Offer</h3>
-    <table class="table table-bordered" style="padding: 20px; border-collapse:collapse;border: 1px solid black; width:96%;">
+    <h3 style="background-color: #d5dce2;padding: 10px;margin-bottom:0px;border-radius:2px;width:90%;">Offer</h3>
+    <table class="table table-bordered" style="font-size:12px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:96%;">
         <tbody>
             <tr>
                 <td width="60%" style="font-weight: bold;">Offered by</td>
@@ -150,7 +147,7 @@ use yii\widgets\DetailView;
 </div>
 </div>
         </div> 
-            <table class=""  width="90%" id="table-table" style="margin-top:20px; margin-bottom:10px;">
+            <table class=""  width="90%" id="table-table" style="font-size:12px;margin-top:20px; margin-bottom:10px;">
                 <thead>
                 <tr>
                     <th width="20px" style="padding: 10px;">NO</th>

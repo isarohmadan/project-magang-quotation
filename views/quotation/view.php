@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\table\Quotation */
-
+$this->title = 'View Quotation: ' . ucwords($model->name_company);
 $this->params['breadcrumbs'][] = ['label' => 'Quotations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="quotation-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 class="ml-3 font-weight-bold"><?= Html::encode($this->title) ?></h2>
 
     <p class="pb-5 pt-3">
         <?= Html::a('Add Service id', ['quot-service','id' => $model->id], ['class' => 'btn btn-dark float-right ml-2']) ?>
@@ -33,10 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h4 class="display-text  text-white pl-2">Table Information</h4>
     <table class="table table-bordered">
         <tbody>
-            <tr>
-                <th style="width: 50% ;">ID</th>
-                <td><?= $model->id ?></td>
-            </tr>
             <tr>
                 <th style="width: 50% ;">DATE</th>
                 <td><?= $model->date ?></td>
