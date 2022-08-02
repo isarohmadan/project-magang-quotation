@@ -16,7 +16,9 @@ use yii\widgets\DetailView;
         
         <meta charset="utf-8">
         <style>
-            
+            * {
+                font-family:Arial, Helvetica, sans-serif;
+            }
             .line {
                 margin-top: -12px;
                 border: 0.5px solid grey;
@@ -35,14 +37,11 @@ use yii\widgets\DetailView;
         }
         
         #table-form {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-            
             margin-bottom: 40px;
+            font-family:Arial, Helvetica, sans-serif;
         }
         #table-table{
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
+            font-family:Arial, Helvetica, sans-serif;
             margin: auto;
             width: 100%;
             border-collapse: collapse;
@@ -62,19 +61,24 @@ use yii\widgets\DetailView;
         }
         .contain-table {
             position: relative;
+            font-family:Arial, Helvetica, sans-serif;
         }
         .table1 td , .table1 th{
             border: 1px solid black;
+            font-family:Arial, Helvetica, sans-serif;
         }
         .table-full td , .table1 th {
             border: 1px solid black;
+            font-family:Arial, Helvetica, sans-serif;
         }
        #table-table td, #table-table th {
             border: 1px solid black;
+            font-family:Arial, Helvetica, sans-serif;
 
        }
        #table-table th {
             background-color: #d5dce2;
+            font-family:Arial, Helvetica, sans-serif;
        }
     
 
@@ -83,17 +87,16 @@ use yii\widgets\DetailView;
     </head>
     
     <body>
-            
+        <div class="header" style="margin-bottom : 10px;">
+        <img src="https://i.ibb.co/rpdGsts/Kop-Surat-sales-01.png" width="100%" style="" alt="">
+        </div>
+        
 
     <div class="contain-table">
 <div class="table-full">
-    <h3 style="background-color: #d5dce2;padding: 10px;margin-bottom:0px;border-radius:2px;">Table Information</h3>
-    <table class="table table-bordered" style="font-size:12px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+    <h6 style="background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;margin-bottom:0px;border-radius:2px;">Table Information</h6>
+    <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
         <tbody>
-            <tr>
-                <td width="60%" style="font-weight: bold;">ID</td>
-                <td><?= $model->id ?></td>
-            </tr>
             <tr>
                 <td width="60%" style="font-weight: bold;">DATE</td>
                 <td><?= $model->date ?></td>
@@ -107,8 +110,8 @@ use yii\widgets\DetailView;
 </div>
 <div class="row">
 <div class="table1" style="float: right; width: 50%;">
-    <h3 style="background-color: #d5dce2;padding: 10px;margin-bottom:0px;border-radius:2px; width:100%;">Company Information</h3>
-    <table class="table table-bordered" style="font-size:12px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+    <h6 style="background-color: #d5dce2;border:1px solid black;padding: 7px;margin-bottom:0px;border-radius:2px; width:100%;">Company Information</h6>
+    <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
         <tbody>
             <tr>
                 <td width="60%" style="font-weight: bold;">Name</td>
@@ -130,8 +133,8 @@ use yii\widgets\DetailView;
     </table>
 </div>
 <div class="table1">
-    <h3 style="background-color: #d5dce2;padding: 10px;margin-bottom:0px;border-radius:2px;width:90%;">Offer</h3>
-    <table class="table table-bordered" style="font-size:12px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:96%;">
+    <h6 style="background-color: #d5dce2;border:1px solid black;padding: 7px;margin-bottom:0px;border-radius:2px;width:91.5%;">Offer</h6>
+    <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:96%;">
         <tbody>
             <tr>
                 <td width="60%" style="font-weight: bold;">Offered by</td>
@@ -147,7 +150,7 @@ use yii\widgets\DetailView;
 </div>
 </div>
         </div> 
-            <table class=""  width="90%" id="table-table" style="font-size:12px;margin-top:20px; margin-bottom:10px;">
+            <table class=""  width="90%" id="table-table" style="font-size:11px;margin-top:20px;font-family:Arial, Helvetica, sans-serif; margin-bottom:10px;">
                 <thead>
                 <tr>
                     <th width="20px" style="padding: 10px;">NO</th>
@@ -182,7 +185,7 @@ use yii\widgets\DetailView;
                     <td></td>
                     <td></td>
                     <td style="padding: 10px;">TOTAL</td>
-                    <td><?php print_r($sum); ?></td>
+                    <td style="padding: 5px;"> <?php print_r($sum); ?></td>
                 </tr>
             <?php } 
             else {
@@ -196,8 +199,8 @@ use yii\widgets\DetailView;
             </table>
 
         
-        <table class="border-0"  id="table-form" style="font-size:12px; ;">
-            <tr><td><h3 style="margin-top: 20px;">Terms & Condition</h3></td></tr>
+        <table class="border-0"  id="table-form" style="font-size:11px;font-family:Arial, Helvetica, sans-serif;">
+            <tr><td><h6 style="margin-top: 10px;">Terms & Condition</h6></td></tr>
             <tr>
                 <td>1. Price above exclude tax</td>
             </tr>
@@ -230,17 +233,17 @@ use yii\widgets\DetailView;
            </div> 
          
     
-        <div style="width: 30%; text-align: center; float: right; font-size:14px;"><?= ucwords($model->offered_by);?></div><br>
-            <div style="width: 30%; text-align: center; float: right;font-size:14px;">Denpasar, <?= date('d-M-Y')?></div><br><br><br><br>
-            <div style="width: 30%; text-align: center; float: right;font-size:14px;"><?= ucwords($model->offered_by);?></div>
+        <div style="width: 30%; text-align: center; float: right; font-size:11px;font-family:Arial, Helvetica, sans-serif;"><?= ucwords($model->offered_by);?></div><br>
+            <div style="width: 30%; text-align: center; float: right;font-size:11px;font-family:Arial, Helvetica, sans-serif;">Denpasar, <?= date('d-M-Y')?></div><br><br><br><br>
+            <div style="width: 30%; text-align: center; float: right;font-size:11px;font-family:Arial, Helvetica, sans-serif;"><?= ucwords($model->offered_by);?></div>
         <br>
         <hr>
         <table class=""  id="">    
         <tr>
-            <td width="20%" style="font-size:10px;">*The above fees & terms / conditions are understood and we confirm this order</td>
+            <td width="20%" style="font-size:11px;font-family:Arial, Helvetica, sans-serif;">*The above fees & terms / conditions are understood and we confirm this order</td>
         </tr>
         <tr>
-            <td width="20%" style="font-size:10px; "><?= $model->name_company ?></td>
+            <td width="20%" style="font-size:11px; font-family:Arial, Helvetica, sans-serif;"><?= $model->name_company ?></td>
         </tr>
             
     </table>
@@ -248,16 +251,16 @@ use yii\widgets\DetailView;
         <br>
     <table class=""  id="">    
         <tr>
-            <td width="40%" style="width:100%; font-weight:bolder; font-size:12px; ">Approved by</td>
+            <td width="40%" style="width:100%; font-weight:bolder; font-size:11px;font-family:Arial, Helvetica, sans-serif; ">Approved by</td>
         </tr>
     
         <tr>
-            <td width="20%" style="font-size:10px;">Name :</td>
-            <td style="font-size:10px;"><?= $model->offered_by ?></td>
+            <td width="20%" style="font-size:8px;font-family:Arial, Helvetica, sans-serif;">Name :</td>
+            <td style="font-size:8px;"><?= $model->offered_by ?></td>
         </tr>
         <tr>
-            <td width="20%" style="font-size:10px;">Date :</td>
-            <td style="font-size:10px;"><?= date('d-M-Y') ?></td>
+            <td width="20%" style="font-size:8px;font-family:Arial, Helvetica, sans-serif;">Date :</td>
+            <td style="font-size:8px;"><?= date('d-M-Y') ?></td>
         </tr>
             
     </table>
