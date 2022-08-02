@@ -199,7 +199,7 @@ use yii\widgets\DetailView;
             </table>
 
         
-        <table class="border-0"  id="table-form" style="font-size:11px;font-family:Arial, Helvetica, sans-serif;">
+        <table class="border-0"  id="table-form" style="font-size:10px;font-family:Arial, Helvetica, sans-serif;">
             <tr><td><h6 style="margin-top: 10px;">Terms & Condition</h6></td></tr>
             <tr>
                 <td>1. Price above exclude tax</td>
@@ -240,10 +240,10 @@ use yii\widgets\DetailView;
         <hr>
         <table class=""  id="">    
         <tr>
-            <td width="20%" style="font-size:11px;font-family:Arial, Helvetica, sans-serif;">*The above fees & terms / conditions are understood and we confirm this order</td>
+            <td width="20%" style="font-size:10px;font-family:Arial, Helvetica, sans-serif;">*The above fees & terms / conditions are understood and we confirm this order</td>
         </tr>
         <tr>
-            <td width="20%" style="font-size:11px; font-family:Arial, Helvetica, sans-serif;"><?= $model->name_company ?></td>
+            <td width="20%" style="font-size:10px; font-family:Arial, Helvetica, sans-serif;"><?= $model->name_company ?></td>
         </tr>
             
     </table>
