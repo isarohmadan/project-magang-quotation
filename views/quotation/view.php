@@ -1,24 +1,43 @@
 <?php
 
+use yii\bootstrap4\Modal;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
+use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\table\Quotation */
-$this->title = 'View Quotation: ' . ucwords($model->name_company);
+$this->title = 'View ' . ucwords($model->name_company);
 $this->params['breadcrumbs'][] = ['label' => 'Quotations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 ?>
 <div class="quotation-view">
-
-    <h2 class="ml-3 font-weight-bold"><?= Html::encode($this->title) ?></h2>
-
-    <p class="pb-5 pt-3">
-        <?= Html::a('Add Service id', ['quot-service','id' => $model->id], ['class' => 'btn btn-dark float-right ml-2']) ?>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary float-right ml-2']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+    
+    <h2 class=" font-weight-bold"><?= Html::encode($this->title) ?></h2>
+    <?php echo Breadcrumbs::widget([
+    'homeLink' => [
+        'label' => 'Quotation',
+        'url' => '',
+        'style' => ['margin-left' => '15px'],
+    ],
+    'links' => [
+        ['label' => 'Index', 'url' => ['index']
+        ,'template' => "<li><b> &#160;> {link} </b></li>\n",
+        'options' => ['class' => 'bg-transparent'
+        
+        ]
+    ,'style' => ['text-decoration'=>'none','color'=>'black']
+    ],
+    ],
+    ]);?>
+    <p class=" ">
+    <?= Html::a('<i class="fas fa-arrow-left"></i> Back', ['index'], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::button('<i class="fas fa-concierge-bell"></i> Service', ['value' => Url::to('index.php?r=quotation/quot-service'.'&id='.$model->id),'class' => 'btn btn-dark float-right ml-2','id' => 'modalbutton']) ?>
+        <?= Html::a('<i class="fas fa-edit"></i> Edit', ['update', 'id' => $model->id], ['class' => 'btn btn-primary float-right ml-2']) ?>
+        <?= Html::a('<i class="fas fa-eraser"></i> Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger float-right ml-2',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -26,7 +45,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
 
-<?= Html::a('Generate', ['gen-pdf', 'id' => $model->id], ['class' => 'btn btn-warning float-right']) ?>
+<?= Html::a('<i class="fas fa-file-pdf"></i> PDF', ['gen-pdf', 'id' => $model->id], ['class' => 'btn btn-warning float-right']) ?>
+<?php
+        Modal::begin([
+            'title' => '<h4>Add Service</h4>',
+            'id' => 'modal', 
+
+        ]);
+
+        echo "<div id='modalContent'> modal Content </div>";
+        Modal::end();
+        ?>
     </p>
 <div class="contain-table">
 <div class="table-full">
@@ -82,8 +111,11 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
         </tbody>
     </table>
+    
+
 </div>
 </div>
 </div>
 
 </div>
+<script></script>

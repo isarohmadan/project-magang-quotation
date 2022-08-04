@@ -19,15 +19,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'service_status')->textInput() ?>
 
     <?= $form->field($model, 'registration_fee')->textInput(['maxlength' => true]) ?>
-    <?= Html::submitButton('Save', ['class' => 'btn btn-success' ,'style' => ['width'=>'100%;']]) ?>
+    <?= Html::submitButton('Save', ['class' => 'btn btn-primary' ,'style' => ['width'=>'100%;']]) ?>
     </div>
 
 
 </div>
-
-  
-
-
     <?php ActiveForm::end(); ?>
-
 </div>

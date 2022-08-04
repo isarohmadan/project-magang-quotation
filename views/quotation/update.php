@@ -1,17 +1,33 @@
 <?php
 
 use yii\helpers\Html;
-
+use yii\widgets\Breadcrumbs;    
 /* @var $this yii\web\View */
 /* @var $model app\models\table\Quotation */
 
-$this->title = 'Update Quotation: ' . ucwords($model->name_company);
+$this->title = 'Update';
 $this->params['breadcrumbs'][] = ['label' => 'Quotations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="quotation-update">
-    <h3 class="font-weight-bold"><?= Html::encode($this->title) ?></h3>
+<?= Html::a('<i class="fas fa-arrow-left"></i> Back', ['index'], ['class' => 'btn btn-secondary float-right mt-3']) ?>
+    <h1 class="font-weight-bold"><?= Html::encode($this->title) ?></h1>
+    <?php echo Breadcrumbs::widget([
+    'homeLink' => [
+        'label' => 'Quotation',
+        'url' => '',
+    ],
+    'links' => [
+        ['label' => 'Index', 'url' => ['index']
+        ,'template' => "<li><b> &#160;> {link} </b></li>\n",
+        'options' => ['class' => 'bg-transparent'
+        
+        ]
+    ,'style' => ['text-decoration'=>'none','color'=>'black']
+    ],
+    ],
+    ]);?>
     <?= $this->render('_form', [
         'model' => $model,
         'id' => $id

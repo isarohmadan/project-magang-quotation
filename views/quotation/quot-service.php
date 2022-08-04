@@ -13,15 +13,15 @@ $quot = new QuotService();
 <form autocomplete="Off">
 <div class="row">
   <div class="col-md-12">
-  <?= $form->field($quot, 'id_service')->widget(Select2::classname(), [
+  <?= $form->field($quot, 'service')->widget(Select2::classname(), [
  'data' => ArrayHelper::map(Service::find()->all(),'id','service_name'),
  'language' => 'en',
- 'options' => ['placeholder' => 'Pilih Id Service'],
+ 'options' => ['placeholder' => 'Select Service'],
  'pluginOptions' => [
  'allowClear' => true
  ],
  ]); ?>
-    <?= Html::submitButton('Save', ['class' => 'btn btn-primary','style'=>['width'=>'100%']]) ?>
+    <?= Html::submitButton('Add', ['class' => 'btn btn-primary','style'=>['width'=>'100%']]) ?>
   </div>
     
 </div>

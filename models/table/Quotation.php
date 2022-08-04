@@ -3,7 +3,7 @@
 namespace app\models\table;
 
 use Yii;
-
+use app\lib\GetName;
 /**
  * This is the model class for table "quotation".
  *
@@ -27,16 +27,33 @@ class Quotation extends \yii\db\ActiveRecord
         return 'quotation';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
             [['date'], 'safe'],
-            [['no_quotation', 'name_company', 'contact_person', 'company_address', 'service_type', 'offered_by', 'offered_to'], 'string', 'max' => 255],
+            [['name_company', 'contact_person', 'company_address', 'service_type', 'offered_by', 'offered_to'], 'string', 'max' => 255],
         ];
     }
+     
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'bahirul\yii2\autonumber\Behavior',
+                'attribute' => 'no_quotation',
+                'value' => function($event){
+                    $generate = GetName::getName($this->name_company);
+                    return '?'.'/'.'QUOT-'.$generate.'/'.date('Y-m-d') ;
+                },
+                'digit' => 3
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+   
 
     /**
      * {@inheritdoc}
@@ -55,4 +72,6 @@ class Quotation extends \yii\db\ActiveRecord
             'offered_to' => 'Offered To',
         ];
     }
+    
+
 }

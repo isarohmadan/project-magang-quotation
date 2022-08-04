@@ -2,21 +2,39 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\models\table\Service */
-$this->title = 'View Quotation: ' . ucwords($model->service_name);
+$this->title = 'View ' . ucwords($model->service_name);
 $this->params['breadcrumbs'][] = ['label' => 'Services', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
         
 <div class="service-view">
-<h3 class="font-weight-bold ml-3"><?= Html::encode($this->title) ?></h3>
+<h1 class="font-weight-bold ml-1"><?= Html::encode($this->title) ?></h1>
+<?php echo Breadcrumbs::widget([
+    'homeLink' => [
+        'label' => 'Service',
+        'url' => '?r=service',
+        'style' => ['margin-left' => '15px']
+    ],
+    'links' => [
+        ['label' => 'View', 'url' => ['view']
+        ,'template' => "<li><b> &#160;> {link} </b></li>\n",
+        'options' => ['class' => 'bg-transparent'
+        
+        ]
+    ,'style' => ['text-decoration'=>'none','color'=>'black']
+    ],
+    ],
+    ]);?>
 
-    <p class="pb-5 pt-3">
-    <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary float-right ml-2']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+    <p class="pt-3">
+    <?= Html::a('<i class="fas fa-arrow-left"></i>Back', ['index'], ['class' => 'btn btn-secondary']) ?>
+
+    <?= Html::a('<i class="fas fa-edit"></i> Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary float-right ml-2']) ?>
+        <?= Html::a('<i class="fas fa-eraser"></i> Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger float-right',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -61,5 +79,6 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 </div>
 </div>
+
 
 </div>
