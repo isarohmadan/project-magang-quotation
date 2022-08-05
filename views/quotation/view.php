@@ -1,6 +1,8 @@
 <?php
 
+use Codeception\Step\Action;
 use yii\bootstrap4\Modal;
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -98,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
 </div>
 <div class="table1 col-lg-6">
-    <h4 class="display-text  text-white pl-2">Offer</h4>
+    <h4 class="display-text  text-white pl-2">Offer & Service</h4>
     <table class="table table-bordered">
         <tbody>
             <tr>
@@ -111,8 +113,24 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
         </tbody>
     </table>
-    
 
+</div>
+<div class="table1 col-lg-12">
+    <h4 class="display-text  text-white pl-2">Service Infromation</h4>
+    <table class="table table-bordered">
+        <tbody>
+            <?php 
+            $no = 1;
+            foreach ($service as $key) {
+               $hasil = $key[0];?>
+
+            <tr>
+                <th style="width: 50% ;"><?= $no++ ?></th>
+                <td><?= $hasil->service_name ?></td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
 </div>
 </div>
 </div>

@@ -72,8 +72,18 @@ class QuotationController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        $service = TableQuotService::find()
+        ->where(['id_quotation'=> $id])
+        ->all();
+        foreach($service as $val) {
+            $service_name = Service::find()
+            ->where(['id' => $val->id_service])
+            ->all();
+            $return[] = $service_name;
+         }  
+         return $this->render('view', [
             'model' => $this->findModel($id),
+            'service' => $return
         ]);
     }
     public function actionQuotService($id){
@@ -82,13 +92,8 @@ class QuotationController extends Controller
         ->where(['id_quotation' => $id , 'id_service' => NULL])
         ->orderBy('id')
         ->one();
-        
-        // echo "<pre>";
-        // print_r($quotService);
-        // exit;
         if($this->request->isPost){
-        $req = $_POST['QuotService']['id_service'];
-            
+        $req = $_POST['QuotService']['service'];
             // kalo di id quotation tidak ada nilai kosong
             if (isset($quotService)) {
                 if ($quotService->load($this->request->post()) && $quotService->save()) {
@@ -134,7 +139,6 @@ class QuotationController extends Controller
         $model = new Quotation();
         $model2 =new TableQuotService();
         if ($this->request->isPost) {
-            $name_company = $_POST['Quotation']['name_company'];
             if ($model->load($this->request->post())&& $model->save() ) {
                 $model2->id_quotation = $model->id;
                 if($model2->save()){
