@@ -12,7 +12,6 @@ use app\assets\QuotAsset;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 $this->title = 'Quotations';
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 
 <div class="quotation-index">
