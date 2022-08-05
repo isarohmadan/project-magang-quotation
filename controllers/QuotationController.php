@@ -12,6 +12,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Mpdf\Mpdf;
 use yii\filters\AccessControl;
+use app\lib\GetName;
 
 /**
  * QuotationController implements the CRUD actions for Quotation model.
@@ -23,6 +24,7 @@ class QuotationController extends Controller
      */
     public function behaviors()
     {
+        
         return array_merge(
             parent::behaviors(),
             [
@@ -74,75 +76,6 @@ class QuotationController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
-    public function actionGenPdf($id){
-        $result = TableQuotService::find()
-        ->where(['id_quotation'=> $id])
-        ->all();
-        $pdf = new mpdf();
-        $pdf->WriteHTML($this->renderPartial('view-pdf' , [
-            'model' => $this->findModel($id),
-            'result' => $result
-
-        ]));
-        $pdf->Output();
-    }
-
-    /**
-     * Creates a new Quotation model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
-    public function actionCreate()
-    {
-        $model = new Quotation();
-        $model2 =new TableQuotService();
-        $newId = Quotation::find()->max('id') + 1;
-        if ($newId < 10) {
-           $id = '00'.$newId;
-        }elseif ($newId<100) {
-            $id = '0'.$newId;
-        }else {
-            $id = $newId;
-        }
-        if ($this->request->isPost) {
-            // fetch the company name
-            $comp = $_POST['Quotation']['name_company'];
-            if ( strstr( $comp, '.' ) ) {
-                $comp = str_replace(".", "","$comp");
-              }
-            $comp = str_replace("PT", "","$comp");
-            $comp = explode(" ",$comp);
-           
-            foreach($comp as $str ){
-                $str = ucwords($str);
-                 $arr[] = substr($str,0,1);
-            }
-            $name_comp = implode($arr);
-           
-            // add parameter no_quotation
-            $param = $this->request->getBodyParams();
-            $param['Quotation']['no_quotation'] = $id.'/QUEDTN-'.$name_comp.date('/m/Y');
-            $company_name = $param['Quotation']['name_company'];
-            if ( strstr($company_name, '.' ) ) {
-                $param['Quotation']['name_company'] = str_replace(".", " ","$company_name");
-              }
-            if ($model->load($param) && $model->save()) {
-                $model2->id_quotation = $model->id;
-                if($model2->save()){
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }else {
-                    return false;
-                }         
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-            'id' =>  $id,
-        ]);
-    }
     public function actionQuotService($id){
         $tabel = new TableQuotService();
         $quotService = $tabel->find()
@@ -173,9 +106,49 @@ class QuotationController extends Controller
             
             
             }
-        return $this->render('quot-service');
+        return $this->renderAjax('quot-service' ,[
+            'model' => $tabel
+        ]);
         
     }
+    public function actionGenPdf($id){
+        $result = TableQuotService::find()
+        ->where(['id_quotation'=> $id])
+        ->all();
+        $pdf = new mpdf();
+        $pdf->WriteHTML($this->renderPartial('view-pdf' , [
+            'model' => $this->findModel($id),
+            'result' => $result
+
+        ]));
+        $pdf->Output();
+    }
+
+    /**
+     * Creates a new Quotation model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     */
+    public function actionCreate()
+    {
+        $model = new Quotation();
+        $model2 =new TableQuotService();
+        if ($this->request->isPost) {
+            $name_company = $_POST['Quotation']['name_company'];
+            if ($model->load($this->request->post())&& $model->save() ) {
+                $model2->id_quotation = $model->id;
+                if($model2->save()){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }else {
+                    return false;
+                }  
+            }
+        }   
+        return $this->render('create', [
+            'model' => $model
+        ]);
+    }
+    
 
     /**
      * Updates an existing Quotation model.

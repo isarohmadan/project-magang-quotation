@@ -1,0 +1,158 @@
+<?= $form->field($quot, 'id_service')->widget(Select2::classname(), [
+ 'data' => ArrayHelper::map(Service::find()->all(),'id','service_name'),
+ 'language' => 'en',
+ 'options' => ['placeholder' => 'Pilih Id Service'],
+ 'pluginOptions' => [
+ 'allowClear' => true
+ ],
+ ]); ?>
+
+
+ <div class="contain-table">
+    <div class="table-full">
+        <h6 style="background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;margin-bottom:0px;border-radius:2px;">Table Information</h6>
+        <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+            <tbody>
+                <tr>
+                    <td width="60%" style="font-weight: bold;">DATE</td>
+                    <td><?= $model->date ?></td>
+                </tr>
+                <tr>
+                    <td width="60%" style="font-weight: bold;">NO QUOT</td>
+                    <td><?= $model->no_quotation ?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+    <div class="table1" style="float: right; width: 50%;">
+        <h6 style="background-color: #d5dce2;border:1px solid black;padding: 7px;margin-bottom:0px;border-radius:2px; width:100%;">Company Information</h6>
+        <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+            <tbody>
+                <tr>
+                    <td width="60%" style="font-weight: bold;">Name</td>
+                    <td><?= $model->name_company ?></td>
+                </tr>
+                <tr>
+                    <td width="60%" style="font-weight: bold;">Contact Person</td>
+                    <td><?= $model->contact_person ?></td>
+                </tr>
+                <tr>
+                    <td width="60%" style="font-weight: bold;">Address</td>
+                    <td><?= $model->company_address ?></td>
+                </tr>
+                <tr>
+                    <td width="60%" style="font-weight: bold;">Service Type</td>
+                    <td><?= $model->service_type ?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table1">
+        <h6 style="background-color: #d5dce2;border:1px solid black;padding: 7px;margin-bottom:0px;border-radius:2px;width:91.5%;">Offer</h6>
+        <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:96%;">
+            <tbody>
+                <tr>
+                    <td width="60%" style="font-weight: bold;">Offered by</td>
+                    <td><?= $model->offered_by ?></td>
+                </tr>
+                <tr>
+                    <td width="60%" style="font-weight: bold;">Offered to</td>
+                    <td><?= $model->offered_to ?></td>
+        </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+    =------------------
+
+     <table class="border-0"  id="table-form" style="font-size:11px;font-family:Arial, Helvetica, sans-serif;">
+            <tr><td><h6 style="margin-top: 10px;">Terms & Condition</h6></td></tr>
+            <tr>
+                <td>1. Price above exclude tax</td>
+            </tr>
+            <tr>
+                <td>2. This offer is valid for 1 week from the offer date</td>
+            </tr>
+            <tr>
+                <td>3. Delivery time 14 working days, since payment recived</td>
+            </tr>
+            <tr>
+                <td>4. prepaid service</td>
+               
+              
+               
+            </tr>
+            <tr>
+                <td>BCA : 7725158181</td>
+            </tr>
+            <tr>
+            <td>BNI  : 3617233333</td>
+            </tr>
+            <tr>
+            <td>BPD : 0300111000110</td>    
+                
+            </tr>
+            
+        </table>
+
+
+----------------
+
+<table class=""  id="">    
+        <tr>
+            <td width="40%" style="width:100%; font-weight:bolder; font-size:11px;font-family:Arial, Helvetica, sans-serif; ">Approved by</td>
+        </tr>
+    
+        <tr>
+            <td width="20%" style="font-size:12px;font-family:Arial, Helvetica, sans-serif;">Name :</td>
+            <td style="font-size:12px;"><?= $model->offered_by ?></td>
+        </tr>
+        <tr>
+            <td width="20%" style="font-size:12px;font-family:Arial, Helvetica, sans-serif;">Date :</td>
+            <td style="font-size:12px;"><?= date('d-M-Y') ?></td>
+        </tr>
+            
+    </table>
+        
+
+
+
+        ---------------------------
+
+
+
+
+        <table class=""  id="">    
+        <tr>
+            <td width="20%" style="font-size:12px;font-family:Arial, Helvetica, sans-serif;">*The above fees & terms / conditions are understood and we confirm this order</td>
+        </tr>
+        <tr>
+            <td width="20%" style="font-size:12px; font-family:Arial, Helvetica, sans-serif;"><?= $model->name_company ?></td>
+        </tr>
+            
+    </table>
+
+
+
+
+
+    =========================
+
+
+     
+        <div style="width: 30%; font-size : 11px; text-align: center; float: right; font-size:15px;font-family:Arial, Helvetica, sans-serif;"><?= ucwords($model->offered_by);?></div><br>
+            <div style="width: 30%; font-size : 11px; text-align: center; float: right;font-size:15px;font-family:Arial, Helvetica, sans-serif;">Denpasar, <?= date('d-M-Y')?></div><br><br><br><br>
+            <div style="width: 30%; font-size : 11px; text-align: center; float: right;font-size:15px;font-family:Arial, Helvetica, sans-serif;"><?= ucwords($model->offered_by);?></div>
+        <br>
+        <hr>
+        
+        <br><br>
+        <br>

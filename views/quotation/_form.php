@@ -13,23 +13,27 @@ use yii\bootstrap4\ActiveForm;
 <form autocomplete="Off">
 <div class="row">
   <div class="col-md-12">
+  
+  <?= $form->field($model, 'name_company')->textInput(['maxlength' => true , 'required' => 'required']) ?>
+  <?= $form->field($model, 'company_address')->textInput(['maxlength' => true]) ?>
+  <?= $form->field($model, 'contact_person')->textInput(['maxlength' => true]) ?>
+  <?= $form->field($model, 'service_type')->textInput(['maxlength' => true]) ?>
   <?php 
   echo $form->field($model, 'date')->widget(DatePicker::classname(), [
     'options' => ['placeholder' => 'Enter date ...'],
     'pluginOptions' => [
-        'autoclose' => true
+        'autoclose' => true,
+        'format' => 'yyyy-mm-dd'
+
     ],
     'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+    
 'pickerButton' => ['title' => false],
 ]);
  ?>
-  <?= $form->field($model, 'no_quotation')->textInput(['maxlength' => true, 'value' => $id,'readonly'=>'true']) ?>
-  <?= $form->field($model, 'name_company')->textInput(['maxlength' => true , 'required' => 'required']) ?>
-  <?= $form->field($model, 'contact_person')->textInput(['maxlength' => true]) ?>
-  <?= $form->field($model, 'service_type')->textInput(['maxlength' => true]) ?>
-  <?= $form->field($model, 'company_address')->textInput(['maxlength' => true]) ?>
-  <?= $form->field($model, 'offered_by')->textInput(['maxlength' => true]) ?>
+   <?= $form->field($model, 'offered_by')->textInput(['maxlength' => true]) ?>
   <?= $form->field($model, 'offered_to')->textInput(['maxlength' => true]) ?>
+
   <?= Html::submitButton('Save', ['class' => 'btn btn-primary','style'=>['width'=>'100%']]) ?>
   </div>
 </div>

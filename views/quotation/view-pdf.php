@@ -88,61 +88,58 @@ use yii\widgets\DetailView;
     
     <body>
         <div class="header" style="margin-bottom : 10px;">
-        <img src="https://i.ibb.co/rpdGsts/Kop-Surat-sales-01.png" width="100%" style="" alt="">
+        <img src="img/kop_surat.png" width="100%" style="" alt="">
         </div>
         
 
     <div class="contain-table">
-<div class="table-full">
-    <h6 style="background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;margin-bottom:0px;border-radius:2px;">Table Information</h6>
-    <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+<div class="table-full" style="margin-bottom:15px;">
+    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
         <tbody>
             <tr>
-                <td width="60%" style="font-weight: bold;">DATE</td>
-                <td><?= $model->date ?></td>
+                <td width="50%" style="font-weight: bold; background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">DATE</td>
+                <td width="50%" style="padding: 7px;"><?= $model->date ?></td>
             </tr>
             <tr>
-                <td width="60%" style="font-weight: bold;">NO QUOT</td>
-                <td><?= $model->no_quotation ?></td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">NO QUOT</td>
+                <td style="padding: 7px;"><?= $model->no_quotation ?></td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="row">
-<div class="table1" style="float: right; width: 50%;">
-    <h6 style="background-color: #d5dce2;border:1px solid black;padding: 7px;margin-bottom:0px;border-radius:2px; width:100%;">Company Information</h6>
-    <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+<div class="row" style="">
+<div class="table1" style="float: left; width: 52%">
+    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:97%;">
         <tbody>
             <tr>
-                <td width="60%" style="font-weight: bold;">Name</td>
-                <td><?= $model->name_company ?></td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Name</td>
+                <td style="padding: 7px ;"><?= $model->name_company ?></td>
             </tr>
             <tr>
-                <td width="60%" style="font-weight: bold;">Contact Person</td>
-                <td><?= $model->contact_person ?></td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Contact Person</td>
+                <td style="padding: 7px ;"><?= $model->contact_person ?></td>
             </tr>
             <tr>
-                <td width="60%" style="font-weight: bold;">Address</td>
-                <td><?= $model->company_address ?></td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Address</td>
+                <td style="padding: 7px ;"><?= $model->company_address ?></td>
             </tr>
             <tr>
-                <td width="60%" style="font-weight: bold;">Service Type</td>
-                <td><?= $model->service_type ?></td>
+                <td width="50%" style="font-weight: bold; background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Service Type</td>
+                <td style="padding: 7px ;"><?= $model->service_type ?></td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="table1">
-    <h6 style="background-color: #d5dce2;border:1px solid black;padding: 7px;margin-bottom:0px;border-radius:2px;width:91.5%;">Offer</h6>
-    <table class="table table-bordered" style="font-size:11px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:96%;">
+<div class="table1" style="float:right">
+    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
         <tbody>
             <tr>
-                <td width="60%" style="font-weight: bold;">Offered by</td>
-                <td><?= $model->offered_by ?></td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Offered by</td>
+                <td style="padding: 7px ;"><?= $model->offered_by ?></td>
             </tr>
             <tr>
-                <td width="60%" style="font-weight: bold;">Offered to</td>
-                <td><?= $model->offered_to ?></td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Offered to</td>
+                <td style="padding: 7px ;"><?= $model->offered_to ?></td>
     </tr>
         </tbody>
     </table>
@@ -150,7 +147,7 @@ use yii\widgets\DetailView;
 </div>
 </div>
         </div> 
-            <table class=""  width="90%" id="table-table" style="font-size:11px;margin-top:20px;font-family:Arial, Helvetica, sans-serif; margin-bottom:10px;">
+            <table class=""  width="90%" id="table-table" style="font-size:15px;margin-top:20px;font-family:Arial, Helvetica, sans-serif; margin-bottom:10px;">
                 <thead>
                 <tr>
                     <th width="20px" style="padding: 10px;">NO</th>
@@ -198,73 +195,52 @@ use yii\widgets\DetailView;
             </tbody>
             </table>
 
-        
-        <table class="border-0"  id="table-form" style="font-size:11px;font-family:Arial, Helvetica, sans-serif;">
-            <tr><td><h6 style="margin-top: 10px;">Terms & Condition</h6></td></tr>
+            <div class="row" style="margin-top:25px;">
+<div class="table1" style="float: left; width: 52%">
+    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:97%;">
+        <tbody>
             <tr>
-                <td>1. Price above exclude tax</td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Name</td>
+                <td style="padding: 7px ;"><?= $model->name_company ?></td>
             </tr>
             <tr>
-                <td>2. This offer is valid for 1 week from the offer date</td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Contact Person</td>
+                <td style="padding: 7px ;"><?= $model->contact_person ?></td>
             </tr>
             <tr>
-                <td>3. Delivery time 14 working days, since payment recived</td>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Address</td>
+                <td style="padding: 7px ;"><?= $model->company_address ?></td>
             </tr>
             <tr>
-                <td>4. prepaid service</td>
-               
-              
-               
+                <td width="50%" style="font-weight: bold; background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Service Type</td>
+                <td style="padding: 7px ;"><?= $model->service_type ?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table1" style="float:right">
+    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
+        <tbody>
+            <tr>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Offered by </td>
+                <td style="padding: 7px ;"><?= $model->offered_by ?></td>
             </tr>
             <tr>
-                <td>BCA : 7725158181</td>
-            </tr>
-            <tr>
-            <td>BNI  : 3617233333</td>
-            </tr>
-            <tr>
-            <td>BPD : 0300111000110</td>    
-                
-            </tr>
-            
-        </table>
+                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Offered to</td>
+                <td style="padding: 7px ;"><?= $model->offered_to ?></td>
+    </tr>
+        </tbody>
+    </table>
+</div>
+</div>
 
+        
+       
 
            </div> 
          
+   
     
-        <div style="width: 30%; text-align: center; float: right; font-size:11px;font-family:Arial, Helvetica, sans-serif;"><?= ucwords($model->offered_by);?></div><br>
-            <div style="width: 30%; text-align: center; float: right;font-size:11px;font-family:Arial, Helvetica, sans-serif;">Denpasar, <?= date('d-M-Y')?></div><br><br><br><br>
-            <div style="width: 30%; text-align: center; float: right;font-size:11px;font-family:Arial, Helvetica, sans-serif;"><?= ucwords($model->offered_by);?></div>
-        <br>
-        <hr>
-        <table class=""  id="">    
-        <tr>
-            <td width="20%" style="font-size:11px;font-family:Arial, Helvetica, sans-serif;">*The above fees & terms / conditions are understood and we confirm this order</td>
-        </tr>
-        <tr>
-            <td width="20%" style="font-size:11px; font-family:Arial, Helvetica, sans-serif;"><?= $model->name_company ?></td>
-        </tr>
-            
-    </table>
-        <br><br>
-        <br>
-    <table class=""  id="">    
-        <tr>
-            <td width="40%" style="width:100%; font-weight:bolder; font-size:11px;font-family:Arial, Helvetica, sans-serif; ">Approved by</td>
-        </tr>
-    
-        <tr>
-            <td width="20%" style="font-size:8px;font-family:Arial, Helvetica, sans-serif;">Name :</td>
-            <td style="font-size:8px;"><?= $model->offered_by ?></td>
-        </tr>
-        <tr>
-            <td width="20%" style="font-size:8px;font-family:Arial, Helvetica, sans-serif;">Date :</td>
-            <td style="font-size:8px;"><?= date('d-M-Y') ?></td>
-        </tr>
-            
-    </table>
-        
     <div class="quotation-view">
 
 
