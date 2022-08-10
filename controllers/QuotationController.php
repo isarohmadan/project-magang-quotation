@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 use Mpdf\Mpdf;
 use yii\filters\AccessControl;
 use app\lib\GetName;
+use yii\helpers\Json;
 
 /**
  * QuotationController implements the CRUD actions for Quotation model.
@@ -75,15 +76,21 @@ class QuotationController extends Controller
         $service = TableQuotService::find()
         ->where(['id_quotation'=> $id])
         ->all();
-        foreach($service as $val) {
-            $service_name = Service::find()
-            ->where(['id' => $val->id_service])
-            ->all();
-            $return[] = $service_name;
-         }  
+        if (!empty($service)) {
+            foreach($service as $val) {
+                print_r($val->id_service);
+                $service_name = Service::find()
+                ->where(['id' => $val->id_service])
+                ->all();
+                $output[] = $service_name;
+             }  
+        }else {
+            $output = NULL;
+        }
+       
          return $this->render('view', [
             'model' => $this->findModel($id),
-            'service' => $return
+            'service' => $output
         ]);
     }
     public function actionQuotService($id){
@@ -117,16 +124,16 @@ class QuotationController extends Controller
         
     }
     public function actionGenPdf($id){
+        
+        $this->layout = 'pdflayout';
         $result = TableQuotService::find()
         ->where(['id_quotation'=> $id])
-        ->all();
-        $pdf = new mpdf();
-        $pdf->WriteHTML($this->renderPartial('view-pdf' , [
+        ->all(); 
+        return $this->render('view-pdf',[
             'model' => $this->findModel($id),
             'result' => $result
-
-        ]));
-        $pdf->Output();
+        ]);
+        
     }
 
     /**
@@ -137,23 +144,29 @@ class QuotationController extends Controller
     public function actionCreate()
     {
         $model = new Quotation();
-        $model2 =new TableQuotService();
+        $modelService = [new TableQuotService];
+        $table_quot = new TableQuotService();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())&& $model->save() ) {
-                $model2->id_quotation = $model->id;
-                if($model2->save()){
+            if ($model->load($this->request->post()) && $model->save()) {
+                $table_quot->id_quotation = $model->id;
+                $table_quot->id_service = $_POST['QuotService']['id_service'];
+                if ($table_quot->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
-                }else {
-                    return false;
-                }  
+                }
+               
             }
-        }   
+        } else {
+            $model->loadDefaultValues();
+        }
         return $this->render('create', [
-            'model' => $model
-        ]);
+            'model' => $model,
+            'modelService' => (empty($modelService)) ? [new TableQuotService] : $modelService,
+        ]);   
     }
-    
-
+    public function actionGetServiceFee($val){
+        $model = Service::findOne($val);
+        echo Json::encode($model);
+    }
     /**
      * Updates an existing Quotation model.
      * If update is successful, the browser will be redirected to the 'view' page.

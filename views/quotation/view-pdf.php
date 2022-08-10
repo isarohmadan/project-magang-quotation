@@ -15,150 +15,158 @@ use yii\widgets\DetailView;
     <head>
         
         <meta charset="utf-8">
-        <style>
-            * {
-                font-family:Arial, Helvetica, sans-serif;
-            }
-            .line {
-                margin-top: -12px;
-                border: 0.5px solid grey;
-            }
-           #header {
-                max-height: 12rem;
-                margin-bottom: 15px;
-                border-collapse: collapse;
-               
-            }
-
-
-        .header-content {
-            position: relative;
-            font-size: 12px;
-        }
-        
-        #table-form {
-            margin-bottom: 40px;
-            font-family:Arial, Helvetica, sans-serif;
-        }
-        #table-table{
-            font-family:Arial, Helvetica, sans-serif;
-            margin: auto;
-            width: 100%;
-            border-collapse: collapse;
-        }
-        #table-table ,thead,tbody {
-            border: 1px solid black;
-        }
-        #table-table tbody {
-            border: 1px solid black;
-            text-align: left;
-        }
-        #table-table>thead>th{
-            border: 1px solid black;
-        }
-        .row {
-            display: block;
-        }
-        .contain-table {
-            position: relative;
-            font-family:Arial, Helvetica, sans-serif;
-        }
-        .table1 td , .table1 th{
-            border: 1px solid black;
-            font-family:Arial, Helvetica, sans-serif;
-        }
-        .table-full td , .table1 th {
-            border: 1px solid black;
-            font-family:Arial, Helvetica, sans-serif;
-        }
-       #table-table td, #table-table th {
-            border: 1px solid black;
-            font-family:Arial, Helvetica, sans-serif;
-
-       }
-       #table-table th {
-            background-color: #d5dce2;
-            font-family:Arial, Helvetica, sans-serif;
-       }
-    
-
-        </style>
-    
     </head>
+        <style>
+    @media print {.tableServicePdf .total {
+                background-color: #808080 !important;
+                -webkit-print-color-adjust: exact; 
+    }}
+    @media print {.tableServicePdf tr td   {
+                background-color: #d9d9d9 !important;
+                text-transform: capitalize;
+                -webkit-print-color-adjust: exact; 
+    }}
+    @media print {.tableServicePdf .headerService th {
+                background-color: #808080 !important;
+                -webkit-print-color-adjust: exact; 
+    }}
+    @media print {.vendorListHeading th {
+    color: white !important;
+    }}
+            @font-face {
+    font-family: myFirstFont;
+    src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+    font-weight: sans-serif;
+  }
+  *{
+    font-family: myFirstFont;
     
+  }
+  .tableQuotationPdf .header{
+    width: 70%;
+  }
+  .table-quot {
+    font-size: 1.1rem;
+  }
+  .stamplePdf{ 
+    width: 100%;
+    height: 150px;
+    
+    position: relative;
+  }
+  .contentStample{
+    position: absolute;
+    left: 90%;
+    margin-top: 20px;
+    width: 7rem;
+    
+  }
+  .headerStample{
+    position: absolute;
+    left: 90%;
+    width: 7rem;
+    text-align: center;
+    
+  }
+  .stamplePdf .footerStample{
+    position: absolute;
+    left: 90%;
+    margin-top: 110px;
+    width: 7rem;
+    text-align: center;
+    
+  }
+  .tableServicePdf {
+    position: relative;
+  }
+  .tableServicePdf tr td {
+    background-color: #d9d9d9;
+    text-transform: capitalize;
+  }
+  .tableServicePdf .total {
+    background-color: #808080;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+    print-color-adjust: exact;
+  }
+  .tableServicePdf .headerService th{
+    background-color: #808080;
+    text-transform: capitalize;
+  }
+  
+  .content-devider{
+    width: 100%;
+    height: 12px;
+    color: black;
+  }
+  .footerGenPdf .contentFoot {
+    margin-top: 100px;
+  }
+  .footerGenPdf .offerBy{
+    margin-top: -20px;
+    font-weight: bold;
+  }
+  .footerGenPdf .contentFoot p {
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+        </style>
     <body>
         <div class="header" style="margin-bottom : 10px;">
         <img src="img/kop_surat.png" width="100%" style="" alt="">
         </div>
         
 
-    <div class="contain-table">
-<div class="table-full" style="margin-bottom:15px;">
-    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
-        <tbody>
-            <tr>
-                <td width="50%" style="font-weight: bold; background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">DATE</td>
-                <td width="50%" style="padding: 7px;"><?= $model->date ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">NO QUOT</td>
-                <td style="padding: 7px;"><?= $model->no_quotation ?></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="row" style="">
-<div class="table1" style="float: left; width: 52%">
-    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:97%;">
-        <tbody>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Name</td>
-                <td style="padding: 7px ;"><?= $model->name_company ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Contact Person</td>
-                <td style="padding: 7px ;"><?= $model->contact_person ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Address</td>
-                <td style="padding: 7px ;"><?= $model->company_address ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold; background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Service Type</td>
-                <td style="padding: 7px ;"><?= $model->service_type ?></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="table1" style="float:right">
-    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
-        <tbody>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Offered by</td>
-                <td style="padding: 7px ;"><?= $model->offered_by ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Offered to</td>
-                <td style="padding: 7px ;"><?= $model->offered_to ?></td>
-    </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-</div>
-        </div> 
-            <table class=""  width="90%" id="table-table" style="font-size:15px;margin-top:20px;font-family:Arial, Helvetica, sans-serif; margin-bottom:10px;">
-                <thead>
+    <div class="tableQuotationPdf">
+        <div class="table-quot">
+            <table>
                 <tr>
-                    <th width="20px" style="padding: 10px;">NO</th>
-                    <th width="150px">Name</th>
-                    <th width="300px">Description</th>
-                    <th>Status</th>
-                    <th>Regis fee</th>
+                    <td class="header font-weight-bold">Date</td>
+                    <td>: <?= $model->date_quotation?></td>
                 </tr>
-            </thead>
-            <tbody>
-            <?php 
+                <tr>
+                    <td class="header font-weight-bold">No Quotation</td>
+                    <td>: <?= $model->no_quotation?></td>
+                </tr>
+                    <td class="header font-weight-bold pt-4">Company Name</td>
+                    <td class="pt-4">: <?= $model->name_company?></td>
+                </tr>
+                <tr>
+                    <td class="header font-weight-bold">Contact Person</td>
+                    <td>: <?= $model->contact_person?></td>
+                </tr>   
+                <tr>
+                    <td class="header font-weight-bold">Company Address</td>
+                    <td>: <?= $model->company_address?></td>
+                </tr>  
+                </tr>
+                    <td class="header font-weight-bold pt-4">Service Type</td>
+                    <td class="pt-4">: <?= $model->service_type?></td>
+                </tr>
+                </tr>
+                    <td class="header font-weight-bold">Offered By</td>
+                    <td>: <?= $model->offered_by?></td>
+                </tr>
+                </tr>
+                    <td class="header font-weight-bold">Offered_to</td>
+                    <td >: <?= $model->offered_to?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+         <div class="tableServicePdf mt-5">
+         <table class="table table-borderless">
+  <thead>
+    <tr class="headerService">
+      <th scope="col">No</th>
+      <th scope="col">Name Service</th>
+      <th scope="col">Description</th>
+      <th scope="col">Registration Fee</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
             $no = 1;
             $sum = 0;
             for ($i=0; $i < count($result); $i++) { 
@@ -167,86 +175,82 @@ use yii\widgets\DetailView;
                 foreach ($table as $key) {
                     $sum += $key->registration_fee;
                     ?>
-                <tr>
-                    <td style="padding: 5px;"><?= $no++ ?></td>
-                    <td style="padding: 5px;"><?= $key->service_name ?></td>
-                    <td style="padding: 5px;"><?= $key->service_description ?></td>
-                    <td style="padding: 5px;"><?= $key->service_status ?></td>
-                    <td style="padding: 5px;"><?= $key->registration_fee ?></td>
-
-                </tr>
-            <?php }} 
-            if ($sum > 0) {?>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td style="padding: 10px;">TOTAL</td>
-                    <td style="padding: 5px;"> <?php print_r($sum); ?></td>
-                </tr>
-            <?php } 
-            else {
-            ?>
-            <tr>
-                <td></td>
-                <td>EMPTY DATA</td>
-            </tr>
-            <?php } ?>
-            </tbody>
-            </table>
-
-            <div class="row" style="margin-top:25px;">
-<div class="table1" style="float: left; width: 52%">
-    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:97%;">
-        <tbody>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Name</td>
-                <td style="padding: 7px ;"><?= $model->name_company ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Contact Person</td>
-                <td style="padding: 7px ;"><?= $model->contact_person ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Address</td>
-                <td style="padding: 7px ;"><?= $model->company_address ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold; background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Service Type</td>
-                <td style="padding: 7px ;"><?= $model->service_type ?></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="table1" style="float:right">
-    <table class="table table-bordered" style="font-size:15px;padding: 20px; border-collapse:collapse;border: 1px solid black; width:100%;">
-        <tbody>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Offered by </td>
-                <td style="padding: 7px ;"><?= $model->offered_by ?></td>
-            </tr>
-            <tr>
-                <td width="50%" style="font-weight: bold;background-color: #d5dce2;border:1px solid black;outline: 0.1em solid darkgray;padding: 7px;">Offered to</td>
-                <td style="padding: 7px ;"><?= $model->offered_to ?></td>
+    <tr>
+      <td scope="row"><?= $no++ ?></td>
+      <td width="40%"><?= $key->service_name ?></td>
+      <td><?= $key->service_description ?></td>
+      <td>Rp <?= $key->registration_fee ?></td>
     </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-
-        
-       
-
-           </div> 
-         
-   
-    
-    <div class="quotation-view">
-
-
-
-</div>
-
+    <?php }} ?>
+    <tr class="table-borderless">
+      <th scope="row"></th>
+      <th></th>
+      <th class="font-weight-bold total">Total</th>
+      <td>Rp <?= $sum ?></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+    <div class="termsCondition mt-4">
+        <div class="header-termsCondition">
+            <h6 class="font-weight-bold">Terms & Condition</h6>
+        </div>
+        <div class="content-termsCondition">
+            <li type="1">Price above exclude tax</li>
+            <li type="1">This offer is valid for 1 week from the offer date</li>
+            <li type="1">Delivery time 14 working days, since payment recived</li>
+            <li type="1">Prepaid service</li>
+            <li type="1">Bank Account in the name of PT Dewata Telematika
+                <span>
+                    <ul type="none">
+                        <li>BCA : 7725158181</li>
+                        <li>BNI : 3617233333</li>
+                        <li>BPD : 0300111000110</li>
+                    </ul>
+                </span>
+            </li>
+        </div>
+    </div>
+    <div class="stamplePdf mt-5">
+        <div class="headerStample">
+            <p class="font-weight-bold text-center">Prepared By</p>
+        </div>
+        <div class="contentStample">
+            <p class="font-weight-bold text-center"><?= $model->date_quotation ?></p>
+        </div>
+        <div class="footerStample">
+            <p class="font-weight-bold text-center"><?= $model->offered_by ?></p>
+        </div>
+    </div>
+    <hr>
+    <div class="footerGenPdf">
+        <div class="headerFoot">
+            <p>*The above fees * terms / conditions are understood and we confirm this order</p>
+            <p class="offerBy"><?= $model->offered_by ?></p>
+        </div>
+        <div class="contentFoot">
+            <p>Approved By</p>
+            <table>
+                <tr>
+                    <td width = '100px'>
+                        Name
+                    </td>
+                    <td>
+                        :  <?= $model->offered_by ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td width = '100px'>
+                        Date
+                    </td>
+                    <td>
+                        : <?= date('d-M-Y'); ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     </body>
+    <div class="none"></div>
 
 </html>

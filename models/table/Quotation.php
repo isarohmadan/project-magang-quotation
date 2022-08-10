@@ -2,13 +2,14 @@
 
 namespace app\models\table;
 
-use Yii;
 use app\lib\GetName;
+use Yii;
+
 /**
  * This is the model class for table "quotation".
  *
  * @property int $id
- * @property string|null $date
+ * @property string|null $date_quotation
  * @property string|null $no_quotation
  * @property string|null $name_company
  * @property string|null $contact_person
@@ -27,14 +28,16 @@ class Quotation extends \yii\db\ActiveRecord
         return 'quotation';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
-            [['date'], 'safe'],
-            [['name_company', 'contact_person', 'company_address', 'service_type', 'offered_by', 'offered_to'], 'string', 'max' => 255],
+            [['date_quotation'], 'safe'],
+            [['no_quotation', 'name_company', 'contact_person', 'company_address', 'service_type', 'offered_by', 'offered_to'], 'string', 'max' => 255],
         ];
     }
-     
     public function behaviors()
     {
         return [
@@ -53,16 +56,11 @@ class Quotation extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-   
-
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'date' => 'Date',
+            'date_quotation' => 'Date Quotation',
             'no_quotation' => 'No Quotation',
             'name_company' => 'Name Company',
             'contact_person' => 'Contact Person',
@@ -72,6 +70,4 @@ class Quotation extends \yii\db\ActiveRecord
             'offered_to' => 'Offered To',
         ];
     }
-    
-
 }

@@ -67,7 +67,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <tbody>
             <tr>
                 <th style="width: 50% ;">Status</th>
-                <td><?= $model->service_status?></td>
+                <?php if ($model->service_status > 0) {?>
+                    <td class="text-success font-weight-bold">ACTIVE</td>
+                <?php }else {?>
+                    <td class="text-danger font-weight-bold">INACTIVE</td>
+                <?php } ?>
             </tr>
             <tr>
                 <th style="width: 50% ;">Regis Fee</th>

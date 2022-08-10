@@ -1,46 +1,142 @@
 <?php
 
-use yii\helpers\Html;
+use app\models\table\Service;
 use kartik\date\DatePicker;
-use yii\bootstrap4\ActiveForm;
-/* @var $this yii\web\View */
-/* @var $model app\models\table\Quotation */
-/* @var $form yii\widgets\ActiveForm */
-?>
-<div class="quotation-form">
-<?php $form = ActiveForm::begin(); 
-?>
-<form autocomplete="Off">
-<div class="row">
-  <div class="col-md-12">
-  
-  <?= $form->field($model, 'name_company')->textInput(['maxlength' => true , 'required' => 'required']) ?>
-  <?= $form->field($model, 'company_address')->textInput(['maxlength' => true]) ?>
-  <?= $form->field($model, 'contact_person')->textInput(['maxlength' => true]) ?>
-  <?= $form->field($model, 'service_type')->textInput(['maxlength' => true]) ?>
-  <?php 
-  echo $form->field($model, 'date')->widget(DatePicker::classname(), [
-    'options' => ['placeholder' => 'Enter date ...'],
-    'pluginOptions' => [
-        'autoclose' => true,
-        'format' => 'yyyy-mm-dd'
+use kartik\form\ActiveField;
+use yii\helpers\Html;
+use kartik\form\ActiveForm;
+use kartik\select2\Select2;
+use wbraganca\dynamicform\DynamicFormWidget;
+use yii\helpers\ArrayHelper;
 
-    ],
-    'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+?>
+
+<div class="customer-form">
+
+    <?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
+            <div class="row bg-transparent col-md-12">
+        <div class="form-row">
+        <div class="col-md-5 form-group">
+                <?= $form->field($model, 'name_company',['addon' => ['prepend' => ['content'=>'<i class="fas fa-building"></i>']]
+        ])->textInput(['maxlength' => true , 'required' => true, 'placeholder' => 'nama company']) ?>
+        </div>
+        <div class="col-md-4">
+        <?= $form->field($model, 'contact_person',['addon' => ['prepend' => ['content'=>'<i class="fas fa-user-tie"></i>']]
+        ])->textInput(['maxlength' => true , 'placeholder'=>'contact person']) ?>
+        </div>
+        <div class="col-md-3">
+        <?php
+            echo $form->field($model, 'date_quotation')->widget(DatePicker::classname(), [
+            'options' => ['placeholder' => 'Enter date'],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy/mm/dd'
+            ]
+        ]);
+        ?>
+        </div>
+        <div class="col-md-12">
+        <?php echo $form->field($model, 'company_address', [
+            'hintType' => ActiveField::HINT_SPECIAL,
+            'hintSettings' => ['placement' => 'right', 'onLabelClick' => true, 'onLabelHover' => false]
+        ])->textArea([
+            'id' => 'address-input', 
+            'placeholder' => 'Enter address...', 
+            'rows' => 4
+        ]);
+        ?>
+        </div>
+        </div>
+        </div>
+        </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+        <div class="row col-md-12">
+             <?php DynamicFormWidget::begin([
+                'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
+                'widgetBody' => '.container-items', // required: css class selector
+                'widgetItem' => '.item', // required: css class
+                'limit' => 4, // the maximum times, an element can be cloned (default 999)
+                'min' => 1, // 0 or 1 (default 1)
+                'insertButton' => '.add-item', // css class
+                'deleteButton' => '.remove-item', // css class
+                'model' => $modelService[0],
+                'formId' => 'dynamic-form',
+                'formFields' => [
+                    'id_service',
+                    'id_quotation',
+                ],
+            ]); ?>
+
+            <div class="container-items"><!-- widgetContainer -->
+            <?php foreach ($modelService as $i => $modelAddress): ?>
+                <div class="item panel panel-default"><!-- widgetBody -->
+                    <div class="panel-heading">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body">
+                        <?php
+                            // necessary for update action.
+                            if (! $modelAddress->isNewRecord) {
+                                echo Html::activeHiddenInput($modelAddress, "[{$i}]id");
+                            }
+                        ?>
+    <table width="100%" class="quotationServiceTable" id="quotService">
+        <tr>
+          <th class="service-table p-3 text-left font-weight-bold">Service</th>
+          <th class="text-center p-3 font-weight-bold">Fee</th>
+        </tr>
+        <tr class="duplicate">
+          <td class="pt-3 addQuotService" id="QuotService"><?= $form->field($modelAddress, 'id_service',['addon' => ['prepend' => ['content'=>'<i class="fas fa-concierge-bell"></i>']]
+      ])->widget(Select2::classname(), [
+      'data' => ArrayHelper::map(Service::find()->where(['service_status' => 1])->all(),'id','service_name'),
+      'language' => 'en',
+      'options' => ['placeholder' => 'Select Service','id'=>'paymentQuotService'],
+      'pluginOptions' => [
+      'allowClear' => true
+      ],
+      
+      ])->label(false); ?></td>
+      <td class="text-center" id="hargaService">Rp 0</td>
+        </tr>
+    </table>
+    <div class="p-4">
     
-'pickerButton' => ['title' => false],
-]);
- ?>
-   <?= $form->field($model, 'offered_by')->textInput(['maxlength' => true]) ?>
-  <?= $form->field($model, 'offered_to')->textInput(['maxlength' => true]) ?>
-
-  <?= Html::submitButton('Save', ['class' => 'btn btn-primary','style'=>['width'=>'100%']]) ?>
+    </div>
   </div>
 </div>
+                    </div>
+                
+            <?php endforeach; ?>
+            <button type="button" class="add-item btn btn-outline-primary btn-xs float-right"><i class="far fa-plus-square"></i></button>
+            <!-- <button type="button" onclick="buttonQuotService()" class="add-item btn btn-outline-primary float-right font-weight-bold" width="100%"><i class="far fa-plus-square"></i> Add</button> -->
+            </div>
+            <?php DynamicFormWidget::end(); ?>
+        </div>
+        
+    </div>
+    </div>
+    <div class="row col-md-12 mt-4">
+    <div class="form-row">
+  <div class="col-md-4">
+    <?= $form->field($model, 'offered_by',['addon' => ['prepend' => ['content'=>'<i class="fab fa-creative-commons-by"></i>']]
+])->textInput(['maxlength' => true,'required'=>true]) ?>
+  </div>
+  <div class="col-md-4
+  ">
+      <?= $form->field($model, 'offered_to', ['addon' => ['prepend' => ['content'=>'<i class="far fa-envelope-open"></i>']]
+])->textInput(['maxlength' => true,'required'=>true]) ?>
+  </div>
+  <div class="col-md-4">
+        <?= $form->field($model, 'service_type',['addon' => ['prepend' => ['content'=>'<i class="fas fa-concierge-bell"></i>']]
+        ])->textInput(['maxlength' => true , 'placeholder'=>'service type']) ?>
+        </div>
+  </div>
+  <?= Html::submitButton('Save', ['class' => 'btn btn-primary' ,'style' => ['width'=>'100%']]) ?>
+  </div>
 
-</form>
-<?php ActiveForm::end(); ?>
 <div class="none"></div>
-</div>
 
-    
+    <?php ActiveForm::end(); ?>
+
+</div>

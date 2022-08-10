@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
            [
             'class' => 'yii\grid\DataColumn',
-            'attribute' => 'date',
+            'attribute' => 'date_quotation',
             'headerOptions' => ['class' => 'text-center'],
             'label' => 'Date',
             'contentOptions' => ['style' => 'width: 150px;', 'class' => 'borderless'],
