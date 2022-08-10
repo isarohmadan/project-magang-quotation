@@ -14,7 +14,7 @@ class m220720_063502_create_Quotation_table extends Migration
     {
         $this->createTable('{{%Quotation}}', [
             'id' => $this->primaryKey(),
-            'date' => $this->date(),
+            'date_quotation' => $this->date(),
             'no_quotation' => $this->string(),
             'name_company' => $this->string(),
             'contact_person' => $this->string(),

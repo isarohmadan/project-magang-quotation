@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use app\assets\QuotAsset;
 use yii\helpers\Url;
@@ -60,7 +59,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'service_status',
             'headerOptions' => ['class' => 'text-center'],
             'label' => 'Status',
-            'contentOptions' => ['style' => 'width: 30px;', 'class' => 'borderless'],
+            'value' => function($data){
+               return ($data->service_status > 0) ? "ACTIVE" : "INACTIVE";
+               },
+            'contentOptions' => function($data){
+                if ($data->service_status > 0 ) {
+                    $border = ['style' => 'width: 30px; border-radius:10px;', 'class' => 'borderless text-center text-success'];
+                }else {
+                    $border = ['style' => 'width: 30px; border-radius:10px;', 'class' => 'borderless text-center text-danger'];
+                }
+                return $border;
+                },
         ],
             'registration_fee',
             

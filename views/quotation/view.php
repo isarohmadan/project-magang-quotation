@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
     ],
     ]);?>
-    <p class=" ">
+    <p class="">
     <?= Html::a('<i class="fas fa-arrow-left"></i> Back', ['index'], ['class' => 'btn btn-secondary']) ?>
         <?= Html::button('<i class="fas fa-concierge-bell"></i> Service', ['value' => Url::to('index.php?r=quotation/quot-service'.'&id='.$model->id),'class' => 'btn btn-dark float-right ml-2','id' => 'modalbutton']) ?>
         <?= Html::a('<i class="fas fa-edit"></i> Edit', ['update', 'id' => $model->id], ['class' => 'btn btn-primary float-right ml-2']) ?>
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <tbody>
             <tr>
                 <th style="width: 50% ;">DATE</th>
-                <td><?= $model->date ?></td>
+                <td><?= $model->date_quotation ?></td>
             </tr>
             <tr>
                 <th style="width: 50% ;">NO QUOT</th>
@@ -120,7 +120,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <table class="table table-bordered">
         <tbody>
             <?php 
+           
             $no = 1;
+            if ($service == NULL) {?>
+            <tr>
+                <th style="width: 50% ;">--</th>
+                <td>--</td>
+            </tr>
+            <?php }else{
             foreach ($service as $key) {
                $hasil = $key[0];?>
 
@@ -128,7 +135,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <th style="width: 50% ;"><?= $no++ ?></th>
                 <td><?= $hasil->service_name ?></td>
             </tr>
-            <?php } ?>
+            <?php } }?>
         </tbody>
     </table>
 </div>

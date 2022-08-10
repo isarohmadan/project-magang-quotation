@@ -8,6 +8,13 @@
     src: url(../fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf);
     font-weight: bold;
   }
+.fa-trash{
+    color: red;
+}
+.service-table {
+    width: 75%;
+    text-align: left;
+}
 h1 {
     margin-left: -18px;
 }
@@ -55,7 +62,7 @@ h1 {
     background-color: #f5f5f5;
 }
 .row {
-    display: block;
+    display: inline-block;
 }
 .borderless th , .borderless td {
     border: none;

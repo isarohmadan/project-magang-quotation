@@ -16,7 +16,7 @@ class m220720_063515_create_service_table extends Migration
             'id' => $this->primaryKey(),
             'service_name' => $this->String(),
             'service_description' => $this->String(),
-            'service_status' => $this->integer(11),
+            'service_status' => $this->integer(1),
             'registration_fee' => $this->String(),
         ]);
     }
