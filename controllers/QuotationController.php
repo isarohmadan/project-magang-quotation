@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 use Mpdf\Mpdf;
 use yii\filters\AccessControl;
 use app\lib\GetName;
+use Mpdf\Container\NotFoundException;
 use yii\helpers\Json;
 
 /**
@@ -27,14 +28,14 @@ class QuotationController extends Controller
     {
         
         return array_merge(
-            parent::behaviors(),
+            parent::behaviors(),    
             [
                 'access' => [ 
                     'class' => AccessControl::className(),
-                    'only' => ['logout','index','create','update','delete','quot-service','gen-pdf','view'],
+                    'only' => ['logout','index','create','update','delete','quot-service','view'],
                     'rules' => [
                         [
-                            'actions' => ['logout','index','create','update','delete','quot-service','gen-pdf','view'],
+                            'actions' => ['logout','index','create','update','delete','quot-service','view'],
                             'allow' => true,
                             'roles' => ['@'],
                         ],
@@ -123,8 +124,10 @@ class QuotationController extends Controller
         ]);
         
     }
-    public function actionGenPdf($id){
-        
+    public function actionGenPdf($id,$token=null){
+        if ($token != "1234") {
+            throw new NotFoundHttpException("Page Not Found");
+        }
         $this->layout = 'pdflayout';
         $result = TableQuotService::find()
         ->where(['id_quotation'=> $id])
