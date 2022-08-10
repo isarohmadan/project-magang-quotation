@@ -12,7 +12,7 @@ class m220720_063502_create_Quotation_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%Quotation}}', [
+        $this->createTable('{{%quotation}}', [
             'id' => $this->primaryKey(),
             'date_quotation' => $this->date(),
             'no_quotation' => $this->string(),
