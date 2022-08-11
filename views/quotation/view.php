@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
 
-<?= Html::a('<i class="fas fa-file-pdf"></i> PDF', ['gen-pdf', 'id' => $model->id], ['class' => 'btn btn-warning float-right']) ?>
+<?= Html::a('<i class="fas fa-file-pdf"></i> PDF', ['generate-pdf', 'id' => $model->id,'token'=>1234], ['class' => 'btn btn-warning float-right']) ?>
 <?php
         Modal::begin([
             'title' => '<h4>Add Service</h4>',

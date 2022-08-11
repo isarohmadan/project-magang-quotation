@@ -412,4 +412,14 @@ use yii\helpers\ArrayHelper;
             </tr>
             <?php } ?>
 
+
+===================
+
+    $data = ["url" => "https://www.google.com/"];
+    $client = new Client();
+    $requests = [
+    'test' => $client->post('http://api.pdf-generator.saturuangdigital.id/generate', ['url' => "https://www.google.com/"]),
+    ];
+    $responses = $client->batchSend($requests);
+    
     
