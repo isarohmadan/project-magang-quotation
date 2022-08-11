@@ -130,7 +130,7 @@ class QuotationController extends Controller
     ->setFormat(Client::FORMAT_JSON)
     ->setUrl('http://api.pdf-generator.saturuangdigital.id/generate')
     ->setData([
-        "url" => "http://27.54.117.163:7010/index.php?r=quotation%2Fgen-pdf&id="+$id+"&token="+$token,
+        "url" => "http://27.54.117.163:7010/index.php?r=quotation%2Fgen-pdf&id=".$id."&token=".$token,
         "contentOptions" => [
             "contentDispotition" => "attachment"
         ]
