@@ -27,10 +27,14 @@ $this->params['breadcrumbs'][] = 'Update';
     ,'style' => ['text-decoration'=>'none','color'=>'black']
     ],
     ],
-    ]);?>
+    ]);
+    
+    ?>
     <?= $this->render('_form', [
         'model' => $model,
-        'id' => $id
+        'id' => $id,
+        'modelService' => $modelService,
+        'title' => $this->title
     ]) ?>
 
 </div>

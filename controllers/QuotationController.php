@@ -74,21 +74,9 @@ class QuotationController extends Controller
         $service = TableQuotService::find()
         ->where(['id_quotation'=> $id])
         ->all();
-        if (!empty($service)) {
-            foreach($service as $val) {
-                print_r($val->id_service);
-                $service_name = Service::find()
-                ->where(['id' => $val->id_service])
-                ->all();
-                $output[] = $service_name;
-             }  
-        }else {
-            $output = NULL;
-        }
-       
          return $this->render('view', [
             'model' => $this->findModel($id),
-            'service' => $output
+            'service' => $service
         ]);
     }
     public function actionQuotService($id){
@@ -135,17 +123,22 @@ class QuotationController extends Controller
         ]);
         
     }
-    public function actionGeneratePdf(){
-        $client = new Client(['baseUrl' => 'http://27.54.117.163:7010/index.php?r=quotation%2Fgenerate-pdf&id=1&token=1234']);
-$response = $client->createRequest()
-    ->setMethod('POST') 
-    ->setUrl('http://api.pdf-generator.saturuangdigital.id/generate?url=https://www.google.com/')
-    ->addHeaders(['content-type' => 'application/json'])
-    ->setContent('{"url": "https://www.google.com/"}')
-    ->send();
-
-echo 'Search results:<br>';
-echo $response->content;
+    public function actionGeneratePdf($id,$token){
+        $client = new Client();
+    $response_client = $client->createRequest()
+    ->setMethod("POST")
+    ->setFormat(Client::FORMAT_JSON)
+    ->setUrl('http://api.pdf-generator.saturuangdigital.id/generate')
+    ->setData([
+        "url" => "http://27.54.117.163:7010/index.php?r=quotation%2Fgen-pdf&id="+$id+"&token="+$token,
+        "contentOptions" => [
+            "contentDispotition" => "attachment"
+        ]
+    ])
+        
+    ->send();   
+    $response = Yii::$app->response;
+    return $response->sendContentAsFile($response_client,'view-test',["mimeType" => 'application/pdf','inline' => 'true']);
     }
 
     /**
@@ -189,24 +182,23 @@ echo $response->content;
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $newId = Quotation::find()->max('id') + 1;
-        if ($newId < 10) {
-           $id = '00'.$newId;
-        }elseif ($newId<100) {
-            $id = '0'.$newId;
-        }else {
-            $id = $newId;
-        }
+        $modelService = [new TableQuotService];
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                    return $this->redirect(['view', 'id' =>$id]);
+                
+            }
+            
         }
 
         return $this->render('update', [
             'model' => $model,
-            'id' => $id
+            'id' => $id,
+            'modelService' => (empty($modelService)) ? [new TableQuotService] : $modelService,
         ]);
     }
+
 
     /**
      * Deletes an existing Quotation model.
@@ -225,6 +217,14 @@ echo $response->content;
        }
 
         
+    }
+    public function actionDeleteQuotservice($id){
+        $model = TableQuotService::findOne(['id'=>$id]);
+        if ($model->delete()) {
+            return $this->redirect(['index']);
+        }else {
+            echo "false";
+        }
     }
 
     /**

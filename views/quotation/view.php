@@ -1,5 +1,6 @@
 <?php
 
+use app\models\table\Service;
 use Codeception\Step\Action;
 use yii\bootstrap4\Modal;
 use yii\grid\GridView;
@@ -128,19 +129,61 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td>--</td>
             </tr>
             <?php }else{
-            foreach ($service as $key) {
-               $hasil = $key[0];?>
+                foreach($service as $val) {
+                $id_quotService = $val->id;
+                $service_name = Service::find()
+                ->where(['id' => $val->id_service])
+                ->all();
+                $output[] = [$service_name,$id_quotService];
+                 }
+            foreach ($output as $key) {
+               $hasil = $key[0][0];
+               $id = $key[1];
+               ?>
 
             <tr>
-                <th style="width: 50% ;"><?= $no++ ?></th>
+                <th style="width: 70px ;"><?= $no++ ?></th>
                 <td><?= $hasil->service_name ?></td>
+                <td><?= $hasil->id ?></td>
+                <td> <?= Html::a('<i class="fas fa-eraser"></i> Delete', ['delete-quotservice', 'id' => $id], [
+            'class' => 'btn btn-danger float-right ml-2',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) 
+        ?>
+        
+        <?= Html::button('<i class="fas fa-concierge-bell"></i> Service', ['value' => Url::to('index.php?r=quotation/quot-service'.'&id='.$model->id),'class' => 'btn btn-dark float-right ml-2','id' => 'modalbutton']) ?>
+    </td>
+            
             </tr>
             <?php } }?>
+            <?php
+        Modal::begin([
+            'title' => '<h4>Add Service</h4>',
+            'id' => 'modal', 
+
+        ]);
+
+        echo "<div id='modalContent'> modal Content </div>";
+        Modal::end();
+        ?>
         </tbody>
     </table>
 </div>
 </div>
 </div>
+<?php
+        Modal::begin([
+            'title' => '<h4>Add Service</h4>',
+            'id' => 'modal', 
+
+        ]);
+
+        echo "<div id='modalContent'> modal Content </div>";
+        Modal::end();
+        ?>
 
 </div>
 <script></script>

@@ -57,7 +57,7 @@ use yii\helpers\ArrayHelper;
                 'widgetBody' => '.container-items', // required: css class selector
                 'widgetItem' => '.item', // required: css class
                 'limit' => 4, // the maximum times, an element can be cloned (default 999)
-                'min' => 1, // 0 or 1 (default 1)
+                'min' => 1, // 0 or 1 (default 1) =
                 'insertButton' => '.add-item', // css class
                 'deleteButton' => '.remove-item', // css class
                 'model' => $modelService[0],
@@ -94,6 +94,7 @@ use yii\helpers\ArrayHelper;
       'options' => ['placeholder' => 'Select Service','id'=>'paymentQuotService'],
       'pluginOptions' => [
       'allowClear' => true
+    
       ],
       
       ])->label(false); ?></td>
