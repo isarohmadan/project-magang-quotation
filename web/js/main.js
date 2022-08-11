@@ -7,20 +7,8 @@ $('#paymentQuotService').change(function() {
      })
     }
 )
-// $('button#buttonServiceFee').on('click',function() {
-//     let row = 1;
-//     $('.duplicate').append($('.the-table').each(function(){
-//         $(this).attr('id',`tableInputQuotation${row++}`)
-//     }))
-    
-// })
-
-// function buttonQuotService(val) {
-//     $('button#buttonServiceFee',function() { 
-//         if (val > 1) {
-//         }else{
-            
-//         }
-//     })
-// }
-
+const title = $('head title').text()
+if (title == "Update") {
+    $('select').val(1).trigger('change')
+    $('select').prop('disabled',true)
+}
