@@ -7,14 +7,11 @@ use app\models\search\QuotationSearch;
 use app\models\table\Service;
 use app\models\table\QuotService as TableQuotService;
 use yii\web\Controller;
-use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use Mpdf\Mpdf;
 use yii\filters\AccessControl;
-use app\lib\GetName;
-use Mpdf\Container\NotFoundException;
 use yii\helpers\Json;
+use yii\httpclient\Client;
 
 /**
  * QuotationController implements the CRUD actions for Quotation model.
@@ -131,12 +128,24 @@ class QuotationController extends Controller
         $this->layout = 'pdflayout';
         $result = TableQuotService::find()
         ->where(['id_quotation'=> $id])
-        ->all(); 
+        ->all();         
         return $this->render('view-pdf',[
             'model' => $this->findModel($id),
             'result' => $result
         ]);
         
+    }
+    public function actionGeneratePdf(){
+        $client = new Client(['baseUrl' => 'http://27.54.117.163:7010/index.php?r=quotation%2Fgenerate-pdf&id=1&token=1234']);
+$response = $client->createRequest()
+    ->setMethod('POST') 
+    ->setUrl('http://api.pdf-generator.saturuangdigital.id/generate?url=https://www.google.com/')
+    ->addHeaders(['content-type' => 'application/json'])
+    ->setContent('{"url": "https://www.google.com/"}')
+    ->send();
+
+echo 'Search results:<br>';
+echo $response->content;
     }
 
     /**
