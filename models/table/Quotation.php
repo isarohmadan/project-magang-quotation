@@ -3,7 +3,9 @@
 namespace app\models\table;
 
 use app\lib\GetName;
+use yii\behaviors\TimestampBehavior;
 use Yii;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "quotation".
@@ -50,7 +52,9 @@ class Quotation extends \yii\db\ActiveRecord
                 },
                 'digit' => 3
             ],
+            TimestampBehavior::class,
         ];
+
     }
 
     /**

@@ -11,7 +11,7 @@ $quot = new QuotService();
 <?php $form = ActiveForm::begin(); 
 ?>
 <form autocomplete="Off">
-<div class="row">
+<div class="row-quotService">
   <div class="col-md-12">
   <?= $form->field($quot, 'service')->widget(Select2::classname(), [
  'data' => ArrayHelper::map(Service::find()->all(),'id','service_name'),
