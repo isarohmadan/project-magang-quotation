@@ -3,6 +3,7 @@
 namespace app\models\table;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "service".
@@ -31,6 +32,12 @@ class Service extends \yii\db\ActiveRecord
         return [
             [['service_status'], 'integer'],
             [['service_name', 'service_description', 'registration_fee'], 'string', 'max' => 255],
+        ];
+    }
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
         ];
     }
 

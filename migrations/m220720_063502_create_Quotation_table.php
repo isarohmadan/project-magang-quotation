@@ -22,6 +22,8 @@ class m220720_063502_create_Quotation_table extends Migration
             'service_type' => $this->string(),
             'offered_by' => $this->string(),
             'offered_to' => $this->string(),
+            'created_at' => $this->integer(11),
+            'updated_at' => $this->integer(11)
         ]);
     }
 
