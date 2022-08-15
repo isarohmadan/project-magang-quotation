@@ -154,7 +154,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) 
         ?>
         
-        <?= Html::button('<i class="fas fa-concierge-bell"></i> Service', ['value' => Url::to('index.php?r=quotation/quot-service'.'&id='.$model->id),'class' => 'btn btn-dark float-right ml-2','id' => 'modalbutton']) ?>
+        <?= Html::a('<i class="fas fa-eraser"></i> Update', ['update-quotservice', 'id' => $id], [
+            'class' => 'btn btn-info float-right ml-2','id'=>'buttonUpdateQuotService'],
+            
+            )
+        ?>
     </td>
             
             </tr>

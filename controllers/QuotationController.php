@@ -59,7 +59,7 @@ class QuotationController extends Controller
                             [
                                 'allow' => true,
                                 'actions' => ['generate-pdf'],
-                                'roles' => ['adminAccess'],
+                                'roles' => ['adminAccess','userAccess'],
                             ],
                         ],
                     ],
@@ -192,6 +192,10 @@ class QuotationController extends Controller
             'model' => $model,
             'modelService' => (empty($modelService)) ? [new TableQuotService] : $modelService,
         ]);   
+    }
+    public function actionUpdateQuotservice($id){
+        $model = TableQuotService::findOne(['id'=>$id]);
+        return $this->renderAjax(['quot-service']);
     }
     public function actionGetServiceFee($val){
         $model = Service::findOne($val);

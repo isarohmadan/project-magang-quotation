@@ -25,12 +25,12 @@ class SiteController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['login'],
-                        'roles' => ['?'],
+                        'roles' => ['adminAccess','userAccess'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['logout'],
-                        'roles' => ['@'],
+                        'roles' => ['adminAccess','userAccess'],
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
