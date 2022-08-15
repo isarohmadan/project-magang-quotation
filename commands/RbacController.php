@@ -1,18 +1,16 @@
 <?php
-
 namespace app\commands;
 
 use Yii;
-use yii\web\Controller;
+use yii\console\Controller;
 
 class RbacController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function actionInit() {
+    public function actionInit()
+    {
         $auth = Yii::$app->authManager;
-        $auth = $auth->removeAll();
+        $auth->removeAll();
+        
         // add "createPost" permission
         $createPost = $auth->createPermission('createPost');
         $createPost->description = 'Create a post';

@@ -27,17 +27,42 @@ class QuotationController extends Controller
         return array_merge(
             parent::behaviors(),    
             [
-                'access' => [ 
-                    'class' => AccessControl::className(),
-                    'only' => ['logout','index','create','update','delete','quot-service','view'],
-                    'rules' => [
-                        [
-                            'actions' => ['logout','index','create','update','delete','quot-service','view'],
-                            'allow' => true,
-                            'roles' => ['@'],
+                    'access' => [
+                        'class' => AccessControl::class,
+                        'only' => ['index','view','generate-pdf','create','update','delete'],
+                        'rules' => [
+                            [
+                                'allow' => true,
+                                'actions' => ['index'],
+                                'roles' => ['adminAccess','userAccess'],
+                            ],
+                            [
+                                'allow' => true,
+                                'actions' => ['view'],
+                                'roles' => ['adminAccess','userAccess'],
+                            ],
+                            [
+                                'allow' => true,
+                                'actions' => ['create'],
+                                'roles' => ['adminAccess','userAccess'],
+                            ],
+                            [
+                                'allow' => true,
+                                'actions' => ['update'],
+                                'roles' => ['adminAccess','userAccess'],
+                            ],
+                            [
+                                'allow' => true,
+                                'actions' => ['delete'],
+                                'roles' => ['adminAccess    '],
+                            ],
+                            [
+                                'allow' => true,
+                                'actions' => ['generate-pdf'],
+                                'roles' => ['adminAccess'],
+                            ],
                         ],
                     ],
-                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -130,7 +155,7 @@ class QuotationController extends Controller
     ->setFormat(Client::FORMAT_JSON)
     ->setUrl('http://api.pdf-generator.saturuangdigital.id/generate')
     ->setData([
-        "url" => "http://27.54.117.163:7010/index.php?r=quotation%2Fgen-pdf&id=".$id."&token=".$token,
+        "url" => "http://localhost:9000/index.php?r=quotation%2Fgen-pdf&id=1&token=1234",
         "contentOptions" => [
             "contentDispotition" => "attachment"
         ]

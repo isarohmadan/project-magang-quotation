@@ -23,14 +23,33 @@ class ServiceController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [ 
-                    'class' => AccessControl::className(),
-                    'only' => ['logout','index','create','update','delete','view'],
+                'access' => [
+                    'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'actions' => ['logout','index','create','update','delete','view'],
                             'allow' => true,
-                            'roles' => ['@'],
+                            'actions' => ['index'],
+                            'roles' => ['adminAccess','userAccess'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['view'],
+                            'roles' => ['adminAccess','userAccess'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['create'],
+                            'roles' => ['adminAccess','userAccess'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['update'],
+                            'roles' => ['adminAccess','userAccess'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['delete'],
+                            'roles' => ['adminAccess'],
                         ],
                     ],
                 ],
