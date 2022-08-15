@@ -19,10 +19,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        // 'user' => [
-        //     'identityClass' => 'app\models\User',
-        //     'enableAutoLogin' => true,
-        // ],
+        'user' => [
+            'identityClass' => 'app\models\Users',
+            'enableAutoLogin' => true,
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\DbManager'
         ],
@@ -55,26 +55,6 @@ $config = [
             ],
         ],
         */
-    ],
-    'modules' => [
-        'user' => [
-            'class' => 'dektrium\user\Module',
-            'layout' => '@app/views/layouts/main_login',
-            'enableUnconfirmedLogin' => false,
-            'admins' => ['admin']
-        ],
-        'admin' => [
-            'class' => 'mdm\admin\Module',
-            'layout' => 'left-menu',
-
-        ]
-    ],
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            'user/security/login',
-            'user/security/logout'
-        ]
     ],
     'defaultRoute' => 'quotation',
     'params' => $params,

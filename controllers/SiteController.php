@@ -18,22 +18,24 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [ 
-                'class' => AccessControl::className(),
-                'only' => ['logout','index'],
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['login', 'logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
+                        'actions' => ['login'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['logout'],
                         'roles' => ['@'],
                     ],
                 ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
+                'denyCallback' => function ($rule, $action) {
+                    throw new \Exception('You are not allowed to access this page');
+                }
             ],
         ];
     }
@@ -73,11 +75,21 @@ class SiteController extends Controller
     {
         $this->layout = 'main_login';
         if (!Yii::$app->user->isGuest) {
-            return $this->redirect('?r=quotation');
+            if (Yii::$app->user->identity['auth_key'] == 'DhP5fgj8tnK7CDBP5B-V_EE5o3FMMROPL3ECAgmg4vYxSzegWVuBEemi8eRs0vhTel4nSXIs8Dzqx9ETQC7rllnBtywpA4toCrnChbn1pEeKMQvkVRP5FUCfDwHRmqSx') {
+                return $this->redirect(array('/service/index'));
+            }
+            if (Yii::$app->user->identity['auth_key'] == 'wKaRrspiw5dxgIauFu0NOjWRFb24Nh51olMf9PiHYhPiCmNPyXAa8WxheIXAQ13ILqFduvpi5RVx0YcUjMx1BrZwT5pFtW0iKyRFFpNeoN3wjZQE_8cGKo8iq0W7aK1l') {
+                return $this->redirect(array('/quotation/index'));
+            }
         }
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if (Yii::$app->user->identity['auth_key'] == 'DhP5fgj8tnK7CDBP5B-V_EE5o3FMMROPL3ECAgmg4vYxSzegWVuBEemi8eRs0vhTel4nSXIs8Dzqx9ETQC7rllnBtywpA4toCrnChbn1pEeKMQvkVRP5FUCfDwHRmqSx') {
+                return $this->redirect(array('/service/index'));
+            }
+            if (Yii::$app->user->identity['auth_key'] == 'wKaRrspiw5dxgIauFu0NOjWRFb24Nh51olMf9PiHYhPiCmNPyXAa8WxheIXAQ13ILqFduvpi5RVx0YcUjMx1BrZwT5pFtW0iKyRFFpNeoN3wjZQE_8cGKo8iq0W7aK1l') {
+                return $this->redirect(array('/quotation/index'));
+            }
         }
 
         $model->password = '';
