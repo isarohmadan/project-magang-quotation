@@ -25,17 +25,14 @@ class SiteController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['login'],
-                        'roles' => ['adminAccess','userAccess'],
+                        'roles' => ['?'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['logout'],
-                        'roles' => ['adminAccess','userAccess'],
+                        'roles' => ['@'],
                     ],
                 ],
-                'denyCallback' => function ($rule, $action) {
-                    throw new \Exception('You are not allowed to access this page');
-                }
             ],
         ];
     }
