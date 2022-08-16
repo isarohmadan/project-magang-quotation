@@ -102,7 +102,7 @@ use yii\widgets\DetailView;
     color: black;
   }
   .footerGenPdf .contentFoot {
-    margin-top: 100px;
+    margin-top: 40px;
   }
   .footerGenPdf .offerBy{
     margin-top: -10px;
