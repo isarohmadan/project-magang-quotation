@@ -45,9 +45,23 @@ use yii\widgets\DetailView;
   .tableQuotationPdf .header{
     width: 70%;
   }
+
   .table-quot {
     font-size: 1.1rem;
   }
+  .footerGenPdf {
+    border: 1px solid black;
+    padding : 20px;
+  }
+  .table-borderede > thead > tr > th,
+.table-borderede > tbody > tr > th,
+.table-borderede > tfoot > tr > th,
+.table-borderede > thead > tr > td,
+.table-borderede > tbody > tr > td,
+.table-borderede > tfoot > tr > td {
+   border: 0.5px solid #000000;
+}
+
   .stamplePdf{ 
     margin-top:-10px;
     width: 100%;
@@ -68,6 +82,9 @@ use yii\widgets\DetailView;
     width: 7rem;
     text-align: center;
     
+  }
+  .table-bordered thead {
+    border-color: black;
   }
   .stamplePdf .footerStample{
     position: absolute;
@@ -150,14 +167,14 @@ use yii\widgets\DetailView;
                     <td>: <?= $model->offered_by?></td>
                 </tr>
                 </tr>
-                    <td class="header font-weight-bold">Offered_to</td>
+                    <td class="header font-weight-bold">Offered To</td>
                     <td >: <?= $model->offered_to?></td>
                 </tr>
             </table>
         </div>
     </div>
          <div class="tableServicePdf mt-5">
-         <table class="table table-borderless">
+         <table class="table table-borderede">
   <thead>
     <tr class="headerService">
       <th scope="col">No</th>
@@ -223,7 +240,6 @@ use yii\widgets\DetailView;
             <p class="font-weight-bold text-center"><?= $model->offered_by ?></p>
         </div>
     </div>
-    <hr>
     <div class="footerGenPdf">
         <div class="headerFoot">
             <p>*The above fees * terms / conditions are understood and we confirm this order</p>
