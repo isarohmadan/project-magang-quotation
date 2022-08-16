@@ -181,7 +181,6 @@ class QuotationController extends Controller
     public function actionCreate()
     {
         $model = new Quotation();
-        $modelService = [new TableQuotService];
         $table_quot = new TableQuotService();
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -197,7 +196,7 @@ class QuotationController extends Controller
         }
         return $this->render('create', [
             'model' => $model,
-            'modelService' => (empty($modelService)) ? [new TableQuotService] : $modelService,
+            'modelService' => $table_quot
         ]);   
     }
     public function actionUpdateQuotservice($id){
