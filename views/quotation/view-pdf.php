@@ -55,15 +55,15 @@ use yii\widgets\DetailView;
   }
   .table-borderede > thead > tr > th,
 .table-borderede > tbody > tr > th,
-.table-borderede > tfoot > tr > th,
 .table-borderede > thead > tr > td,
 .table-borderede > tbody > tr > td,
-.table-borderede > tfoot > tr > td {
+.table-bordered > tfoot > tr > td
+.table-bordered > tfoot > tr > tth{
    border: 0.5px solid #000000;
 }
 
   .stamplePdf{ 
-    margin-top:-10px;
+    margin-top:20px;
     width: 100%;
     height: 120px;
     
@@ -200,13 +200,15 @@ use yii\widgets\DetailView;
       <td>Rp <?= $key->registration_fee ?></td>
     </tr>
     <?php }} ?>
-    <tr class="table-borderless">
-      <th scope="row"></th>
+  </tbody>
+  <tfoot>
+    <tr class="">
+      <th scope=""></th>
       <th></th>
-      <th class="font-weight-bold total">Total</th>
+      <td class="font-weight-bold total">Total</td>
       <td>Rp <?= $sum ?></td>
     </tr>
-  </tbody>
+  </tfoot>
 </table>
     </div>
     <div class="termsCondition mt-4">
