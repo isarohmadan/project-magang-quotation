@@ -49,15 +49,16 @@ use yii\widgets\DetailView;
     font-size: 1.1rem;
   }
   .stamplePdf{ 
+    margin-top:-10px;
     width: 100%;
-    height: 150px;
+    height: 120px;
     
     position: relative;
   }
   .contentStample{
     position: absolute;
     left: 90%;
-    margin-top: 20px;
+    margin-top: 15px;
     width: 7rem;
     
   }
@@ -71,7 +72,7 @@ use yii\widgets\DetailView;
   .stamplePdf .footerStample{
     position: absolute;
     left: 90%;
-    margin-top: 110px;
+    margin-top: 80px;
     width: 7rem;
     text-align: center;
     
@@ -104,7 +105,7 @@ use yii\widgets\DetailView;
     margin-top: 100px;
   }
   .footerGenPdf .offerBy{
-    margin-top: -20px;
+    margin-top: -10px;
     font-weight: bold;
   }
   .footerGenPdf .contentFoot p {
@@ -211,7 +212,7 @@ use yii\widgets\DetailView;
             </li>
         </div>
     </div>
-    <div class="stamplePdf mt-5">
+    <div class="stamplePdf">
         <div class="headerStample">
             <p class="font-weight-bold text-center">Prepared By</p>
         </div>
