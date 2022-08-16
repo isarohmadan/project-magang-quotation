@@ -71,6 +71,13 @@ class QuotationController extends Controller
                 ],
             ]
         );
+        return function(){
+            if (Yii::$app->user->identity['username'] == "admin") {
+                return $this->layout == 'main_login';
+            }else{
+                return $this->layout == 'main';
+            }
+        };
     }
 
     /**

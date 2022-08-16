@@ -61,6 +61,11 @@ class ServiceController extends Controller
                 ],
             ]
         );
+        return function(){
+            if (Yii::$app->user->identity['username']) {
+                # code...
+            }
+        };
     }
 
     /**

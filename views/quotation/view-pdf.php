@@ -40,7 +40,7 @@ use yii\widgets\DetailView;
   }
   *{
     font-family: myFirstFont;
-    
+    font-size: 11px;
   }
   .tableQuotationPdf .header{
     width: 70%;

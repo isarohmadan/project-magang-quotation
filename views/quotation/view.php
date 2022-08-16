@@ -153,26 +153,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) 
         ?>
-        
-        <?= Html::a('<i class="fas fa-eraser"></i> Update', ['update-quotservice', 'id' => $id], [
-            'class' => 'btn btn-info float-right ml-2','id'=>'buttonUpdateQuotService'],
-            
-            )
-        ?>
     </td>
             
             </tr>
             <?php } }?>
-            <?php
-        Modal::begin([
-            'title' => '<h4>Add Service</h4>',
-            'id' => 'modal', 
 
-        ]);
-
-        echo "<div id='modalContent'> modal Content </div>";
-        Modal::end();
-        ?>
         </tbody>
     </table>
 </div>
