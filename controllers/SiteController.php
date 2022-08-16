@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Users;
 
 class SiteController extends Controller
 {
@@ -20,7 +21,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['login', 'logout'],
+                'only' => ['login', 'logout','user-manage'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -32,10 +33,12 @@ class SiteController extends Controller
                         'actions' => ['logout'],
                         'roles' => ['@'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['user-manage'],
+                        'roles' => ['adminAccess'],
+                    ],
                 ],
-                'denyCallback' => function ($rule, $action) {
-                    throw new \Exception('You are not allowed to access this page');
-                }
             ],
         ];
     }
@@ -61,10 +64,6 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
 
     /**
      * Login action.
@@ -74,20 +73,22 @@ class SiteController extends Controller
     public function actionLogin()
     {
         $this->layout = 'main_login';
+        
         if (!Yii::$app->user->isGuest) {
-            if (Yii::$app->user->identity['auth_key'] == 'DhP5fgj8tnK7CDBP5B-V_EE5o3FMMROPL3ECAgmg4vYxSzegWVuBEemi8eRs0vhTel4nSXIs8Dzqx9ETQC7rllnBtywpA4toCrnChbn1pEeKMQvkVRP5FUCfDwHRmqSx') {
+
+            if (Yii::$app->user->identity['username'] == 'admin') {
                 return $this->redirect(array('/service/index'));
             }
-            if (Yii::$app->user->identity['auth_key'] == 'wKaRrspiw5dxgIauFu0NOjWRFb24Nh51olMf9PiHYhPiCmNPyXAa8WxheIXAQ13ILqFduvpi5RVx0YcUjMx1BrZwT5pFtW0iKyRFFpNeoN3wjZQE_8cGKo8iq0W7aK1l') {
+            if (Yii::$app->user->identity['username'] == 'user') {
                 return $this->redirect(array('/quotation/index'));
             }
         }
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if (Yii::$app->user->identity['auth_key'] == 'DhP5fgj8tnK7CDBP5B-V_EE5o3FMMROPL3ECAgmg4vYxSzegWVuBEemi8eRs0vhTel4nSXIs8Dzqx9ETQC7rllnBtywpA4toCrnChbn1pEeKMQvkVRP5FUCfDwHRmqSx') {
+            if (Yii::$app->user->identity['username'] == 'admin') {
                 return $this->redirect(array('/service/index'));
             }
-            if (Yii::$app->user->identity['auth_key'] == 'wKaRrspiw5dxgIauFu0NOjWRFb24Nh51olMf9PiHYhPiCmNPyXAa8WxheIXAQ13ILqFduvpi5RVx0YcUjMx1BrZwT5pFtW0iKyRFFpNeoN3wjZQE_8cGKo8iq0W7aK1l') {
+            if (Yii::$app->user->identity['username'] == 'user') {
                 return $this->redirect(array('/quotation/index'));
             }
         }
@@ -97,6 +98,15 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    
+    public function actionUserManage(){
+        $model=Users::find()
+        ->all();
+        return $this->render('user-manage',[
+            'model' => $model
+        ]);
+    }
+
 
     /**
      * Logout action.

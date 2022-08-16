@@ -153,22 +153,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) 
         ?>
-        
-        <?= Html::button('<i class="fas fa-concierge-bell"></i> Service', ['value' => Url::to('index.php?r=quotation/quot-service'.'&id='.$model->id),'class' => 'btn btn-dark float-right ml-2','id' => 'modalbutton']) ?>
     </td>
             
             </tr>
             <?php } }?>
-            <?php
-        Modal::begin([
-            'title' => '<h4>Add Service</h4>',
-            'id' => 'modal', 
 
-        ]);
-
-        echo "<div id='modalContent'> modal Content </div>";
-        Modal::end();
-        ?>
         </tbody>
     </table>
 </div>

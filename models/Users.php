@@ -42,7 +42,6 @@ class Users extends \yii\db\ActiveRecord  implements \yii\web\IdentityInterface
     {
         return static::findOne(['access_token' => $token]);
     }
-
     /**
      * @return int|string current user ID
      */
@@ -86,6 +85,11 @@ class Users extends \yii\db\ActiveRecord  implements \yii\web\IdentityInterface
             [['first_name', 'last_name', 'email', 'username', 'password', 'access_token', 'auth_key'], 'string', 'max' => 255],
         ];
     }
+    public function getAuthitem()
+    {
+        return $this->hasOne(AuthItem::class, ['username' => 'name']);
+    }
+
 
     /**
      * {@inheritdoc}

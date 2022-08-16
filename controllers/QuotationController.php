@@ -59,7 +59,7 @@ class QuotationController extends Controller
                             [
                                 'allow' => true,
                                 'actions' => ['generate-pdf'],
-                                'roles' => ['adminAccess'],
+                                'roles' => ['adminAccess','userAccess'],
                             ],
                         ],
                     ],
@@ -71,6 +71,13 @@ class QuotationController extends Controller
                 ],
             ]
         );
+        return function(){
+            if (Yii::$app->user->identity['username'] == "admin") {
+                return $this->layout == 'main_login';
+            }else{
+                return $this->layout == 'main';
+            }
+        };
     }
 
     /**
@@ -192,6 +199,10 @@ class QuotationController extends Controller
             'model' => $model,
             'modelService' => (empty($modelService)) ? [new TableQuotService] : $modelService,
         ]);   
+    }
+    public function actionUpdateQuotservice($id){
+        $model = TableQuotService::findOne(['id'=>$id]);
+        return $this->renderAjax(['quot-service']);
     }
     public function actionGetServiceFee($val){
         $model = Service::findOne($val);

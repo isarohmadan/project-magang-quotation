@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'service_description',
             'headerOptions' => ['class' => 'text-center'],
             'label' => 'Description',
-            'contentOptions' => ['style' => 'width: 400px;', 'class' => 'borderless'],
+            'contentOptions' => ['style' => 'width: 250px;', 'class' => 'borderless'],
         ],
         [
             'class' => 'yii\grid\DataColumn',
@@ -74,13 +74,47 @@ $this->params['breadcrumbs'][] = $this->title;
             'registration_fee',
             
             [
-                
-                'class' => ActionColumn::className(),
-                'header' => 'Actions',
-                'urlCreator' => function ($action, Service $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],  
+                'class' => ActionColumn::class,
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'delete' => function ($url, $model) {
+                        if (Yii::$app->user->identity['username'] == 'admin' ) {
+                        
+                            return Html::a("<i class='fas fa-eraser'></i>", $url, [
+                                'title' => "Delete",
+                                'class' => 'btn btn-danger',
+                                'data' => [
+                                    'method' => 'post',
+                                    'confirm' => 'Are you sure? This will Delete this.',
+                                ],
+                             ]);
+                        }else {
+                            return "";
+                        }
+                    },
+                    'update' => function ($url,$model){
+                        return Html::a("<i class='fas fa-edit'></i>", $url, [
+                            'title' => "Update",
+                            'class' => 'btn btn-primary',
+                            'data' => [
+                                'method' => 'post',
+                            ],
+                         ]);
+                    },
+                    'view' => function ($url,$model){
+                        return Html::a("<i class='fas fa-eye'></i>", $url, [
+                            'title' => "View",
+                            'class' => 'btn btn-warning',
+                            'data' => [
+                                'method' => 'post',
+                            ],
+                         ]);
+                    }
+                        
+
+                ]
+                // you may configure additional properties here
+            ],
         ],
     ]); ?>
 

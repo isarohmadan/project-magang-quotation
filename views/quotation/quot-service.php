@@ -14,7 +14,7 @@ $quot = new QuotService();
 <div class="row-quotService">
   <div class="col-md-12">
   <?= $form->field($quot, 'service')->widget(Select2::classname(), [
- 'data' => ArrayHelper::map(Service::find()->all(),'id','service_name'),
+ 'data' => ArrayHelper::map(Service::find()->where(['service_status'=>1])->all(),'id','service_name'),
  'language' => 'en',
  'options' => ['placeholder' => 'Select Service'],
  'pluginOptions' => [
