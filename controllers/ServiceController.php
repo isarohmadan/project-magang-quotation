@@ -61,11 +61,7 @@ class ServiceController extends Controller
                 ],
             ]
         );
-        return function(){
-            if (Yii::$app->user->identity['username']) {
-                # code...
-            }
-        };
+  
     }
 
     /**
@@ -73,11 +69,11 @@ class ServiceController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($message = NULL)
     {
         $searchModel = new ServiceSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
+        echo($message);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -150,14 +146,14 @@ class ServiceController extends Controller
     public function actionDelete($id)
     {
         $find_id = QuotService::findOne(['id_service' => $id]);
-
+        echo "<pre>";
+        if (isset($find_id)) {
+           return $this->redirect(['index',
+            'message' => "<script> alert('Data sedang digunakan!') </script>"
+        ]);
+        }
        if ($this->findModel($id)->delete()) {
-            if (isset($find_id)) {
-                $find_id->delete();
-                return $this->redirect(['index']);
-            }else {
-                return $this->redirect(['index']);  
-            }
+                return $this->redirect(['index']); 
                       
        } 
 

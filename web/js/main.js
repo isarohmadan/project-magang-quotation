@@ -1,8 +1,4 @@
 
-$('.removeButton').click(()=>{
-    alert('test');
-})
-
 $('#paymentQuotService').change(function() {
     const val = $(this).val();
      $.get('?r=quotation/get-service-fee',{val : val},function(data){

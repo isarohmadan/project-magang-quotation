@@ -75,6 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             [
                 'class' => ActionColumn::class,
+                'contentOptions' => ['style' => 'width: 200px'],
                 'template' => '{view} {update} {delete}',
                 'buttons' => [
                     'delete' => function ($url, $model) {

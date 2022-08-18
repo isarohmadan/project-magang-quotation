@@ -217,7 +217,7 @@ class QuotationController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $modelService = [new TableQuotService];
+        $modelService = new TableQuotService();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -230,7 +230,7 @@ class QuotationController extends Controller
         return $this->render('update', [
             'model' => $model,
             'id' => $id,
-            'modelService' => (empty($modelService)) ? [new TableQuotService] : $modelService,
+            'modelService' => $modelService
         ]);
     }
 
@@ -244,9 +244,17 @@ class QuotationController extends Controller
      */
     public function actionDelete($id)
     {
-        $find_id = TableQuotService::findOne(['id_quotation' => $id]);
-       if ($this->findModel($id)->delete() && $find_id->delete() ) {
+        $model = new TableQuotService() ;
+        $find_id = $model->findAll(['id_quotation' => $id]);
+       if ($this->findModel($id)->delete()) {
+        if (isset($find_id)) {   
+            foreach ($find_id as $key) {
+                $model->findOne($key['id'])->delete();
+            }
             return $this->redirect(['index']);
+        }else {
+            return $this->redirect(['index']);
+        }  
        }else {
             echo"false";
        }
