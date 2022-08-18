@@ -49,45 +49,15 @@ use yii\helpers\ArrayHelper;
         </div>
         </div>
         </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-        <div class="row col-md-12">
-             <?php DynamicFormWidget::begin([
-                'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
-                'widgetBody' => '.container-items', // required: css class selector
-                'widgetItem' => '.item', // required: css class
-                'limit' => 4, // the maximum times, an element can be cloned (default 999)
-                'min' => 1, // 0 or 1 (default 1) =
-                'insertButton' => '.add-item', // css class
-                'deleteButton' => '.remove-item', // css class
-                'model' => $modelService[0],
-                'formId' => 'dynamic-form',
-                'formFields' => [
-                    'id_service',
-                    'id_quotation',
-                ],
-            ]); ?>
 
-            <div class="container-items"><!-- widgetContainer -->
-            <?php foreach ($modelService as $i => $modelAddress): ?>
-                <div class="item panel panel-default"><!-- widgetBody -->
-                    <div class="panel-heading">
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="panel-body">
-                        <?php
-                            // necessary for update action.
-                            if (! $modelAddress->isNewRecord) {
-                                echo Html::activeHiddenInput($modelAddress, "[{$i}]id");
-                            }
-                        ?>
+        <div class="row col-md-12">
     <table width="100%" class="quotationServiceTable" id="quotService">
         <tr>
           <th class="service-table p-3 text-left font-weight-bold">Service</th>
           <th class="text-center p-3 font-weight-bold">Fee</th>
         </tr>
         <tr class="duplicate">
-          <td class="pt-3 addQuotService" id="QuotService"><?= $form->field($modelAddress, 'id_service',['addon' => ['prepend' => ['content'=>'<i class="fas fa-concierge-bell"></i>']]
+          <td class="pt-3 addQuotService" id="QuotService"><?= $form->field($modelService, 'id_service',['addon' => ['prepend' => ['content'=>'<i class="fas fa-concierge-bell"></i>']]
       ])->widget(Select2::classname(), [
       'data' => ArrayHelper::map(Service::find()->where(['service_status' => 1])->all(),'id','service_name'),
       'language' => 'en',
@@ -102,21 +72,11 @@ use yii\helpers\ArrayHelper;
         </tr>
     </table>
     <div class="p-4">
-    
     </div>
-  </div>
-</div>
-                    </div>
-                
-            <?php endforeach; ?>
             <button type="button" class="add-item btn btn-outline-primary btn-xs float-right"><i class="far fa-plus-square"></i></button>
             <!-- <button type="button" onclick="buttonQuotService()" class="add-item btn btn-outline-primary float-right font-weight-bold" width="100%"><i class="far fa-plus-square"></i> Add</button> -->
             </div>
-            <?php DynamicFormWidget::end(); ?>
-        </div>
-        
-    </div>
-    </div>
+
     <div class="row col-md-12 mt-4">
     <div class="form-row">
   <div class="col-md-4">
