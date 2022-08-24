@@ -57,8 +57,8 @@ use yii\widgets\DetailView;
 .table-borderede > tbody > tr > th,
 .table-borderede > thead > tr > td,
 .table-borderede > tbody > tr > td,
-.table-bordered > tfoot > tr > td
-.table-bordered > tfoot > tr > tth{
+.table-borderede > tfoot > tr > td
+.table-borderede > tfoot > tr > tth{
    border: 0.5px solid #000000;
 }
 
