@@ -29,7 +29,8 @@
         "wbraganca/yii2-dynamicform": "*",
         "yiisoft/yii2-httpclient": "*",
         "mdmsoft/yii2-admin": "~2.0",
-        "dektrium/yii2-user": "0.9.*@dev"
+        "dektrium/yii2-user": "0.9.*@dev",
+        "richardfan1126/yii2-js-register": "*"
         
     },
     "require-dev": {

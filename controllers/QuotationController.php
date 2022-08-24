@@ -29,7 +29,7 @@ class QuotationController extends Controller
             [
                     'access' => [
                         'class' => AccessControl::class,
-                        'only' => ['index','view','generate-pdf','create','update','delete'],
+                        'only' => ['index','view','create','update','delete'],
                         'rules' => [
                             [
                                 'allow' => true,
@@ -55,11 +55,6 @@ class QuotationController extends Controller
                                 'allow' => true,
                                 'actions' => ['delete'],
                                 'roles' => ['adminAccess    '],
-                            ],
-                            [
-                                'allow' => true,
-                                'actions' => ['generate-pdf'],
-                                'roles' => ['adminAccess','userAccess'],
                             ],
                         ],
                     ],
@@ -181,22 +176,25 @@ class QuotationController extends Controller
     public function actionCreate()
     {
         $model = new Quotation();
-        $table_quot = new TableQuotService();
+        
         if ($this->request->isPost) {
+            $id_service = $_POST["Quotation"]['id_service'];
             if ($model->load($this->request->post()) && $model->save()) {
-                $table_quot->id_quotation = $model->id;
-                $table_quot->id_service = $_POST['QuotService']['id_service'];
-                if ($table_quot->save()) {
-                    return $this->redirect(['view', 'id' => $model->id]);
+                for($i=0; $i < count($id_service) ; $i++) { 
+                    $table_quot = new TableQuotService();
+                    foreach ($id_service as $key) {
+                        $table_quot->id_service = $key;
+                        $table_quot->id_quotation = $model->id;
+                    }
+                   $table_quot->save();
                 }
-               
+                return $this->redirect('Quotation/index');
             }
         } else {
             $model->loadDefaultValues();
         }
         return $this->render('create', [
             'model' => $model,
-            'modelService' => $table_quot
         ]);   
     }
     public function actionUpdateQuotservice($id){

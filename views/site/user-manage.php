@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="site-management-user">
+<div class="site-management-user col-md-12">
     <h1><?= Html::encode($this->title) ?></h1>
        <?php echo Breadcrumbs::widget([
     'homeLink' => [
@@ -28,13 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
     ],
     ]);?>
-    <div class="row mt-3">
-    <table class="table">
+    <div class="row mt-3 col-md-12">
+    <table class="table" width = "100%">
   <thead>
     <tr>
       <th scope="col">id</th>
       <th scope="col">username</th>
-      <th scope="col">password</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
       <th scope="col">Email</th>
       <th scope="col">Status</th>
     </tr>
@@ -44,9 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
      foreach($model as $key) {?>
     <tr>
         <th> <?= $no++ ?></th>
-      <th scope="row"><?= $key['username'] ?></th>
-      <td> <?= $key['password'] ?> </td>
-      <td> <?= $key['email'] ?> </td>
+      <th width = "30%" scope="row"><?= $key['username'] ?></th>
+      <td width = "20%"> <?= $key['first_name'] ?> </td>
+      <td width = "20%"> <?= $key['last_name'] ?> </td>
+      <td width = "25%"> <?= $key['email'] ?> </td>
       <td style="width: 30px; border-radius:10px;" class= "borderless text-center text-success"><?= (($key['status'] == 1)? "ACTIVE" : "INACTIVE") ?></td>
     </tr>
     <?php }?>

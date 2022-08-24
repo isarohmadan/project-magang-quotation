@@ -22,6 +22,7 @@ use yii\db\Expression;
  */
 class Quotation extends \yii\db\ActiveRecord
 {
+    public $id_service;
     /**
      * {@inheritdoc}
      */
@@ -73,5 +74,8 @@ class Quotation extends \yii\db\ActiveRecord
             'offered_by' => 'Offered By',
             'offered_to' => 'Offered To',
         ];
+    }
+    public function autoInsert(){
+        
     }
 }
