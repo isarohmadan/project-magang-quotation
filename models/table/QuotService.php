@@ -28,6 +28,7 @@ class QuotService extends \yii\db\ActiveRecord
     {
         return [
             [['id_quotation', 'id_service'], 'integer'],
+            [['id_quotation', 'id_service'], 'required']
         ];
     }
 

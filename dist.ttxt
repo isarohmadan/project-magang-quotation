@@ -1,1 +1,11 @@
  <?=  $form->field($model, 'service_type[`+num+`]')->dropDownList(ArrayHelper::map(Service::find()->all(),'id','service_name'),['prompt'=>'Select User'])->label(false) ?>
+
+
+ <tbody>
+        <tr class="duplicate-0">
+          <td class="addQuotService[0] pb-0 pt-3" id="QuotService"><?=  $form->field($model, 'id_service[0]')->dropDownList(ArrayHelper::map(Service::find()->all(),'id','service_name'),['prompt'=>'Select Service'])->label(false) ?></td>
+          <td class="text-center align-middle amountService" id="hargaService-0">Rp <span class="allAmount" id="amountService[0]">0</span></td>
+          <td class="actService"><button type="button" disabled="disabled" id="buttonDelete-0" class="btn btn-danger button-delete"><i class='fas fa-eraser'></i></button></td>
+        </tr>
+      </tbody>
+        
