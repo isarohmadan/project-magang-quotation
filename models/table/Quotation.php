@@ -37,8 +37,10 @@ class Quotation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date_quotation'], 'safe'],
+            [['name_company', 'contact_person', 'company_address', 'service_type', 'offered_by', 'offered_to','id_service','date_quotation'],'required'],
+            [['id_service'], 'exist'],
             [['no_quotation', 'name_company', 'contact_person', 'company_address', 'service_type', 'offered_by', 'offered_to'], 'string', 'max' => 255],
+            
         ];
     }
     public function behaviors()
@@ -74,8 +76,5 @@ class Quotation extends \yii\db\ActiveRecord
             'offered_by' => 'Offered By',
             'offered_to' => 'Offered To',
         ];
-    }
-    public function autoInsert(){
-        
     }
 }

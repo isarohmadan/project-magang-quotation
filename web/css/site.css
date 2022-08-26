@@ -8,6 +8,17 @@
     src: url(../fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf);
     font-weight: bold;
   }
+.total-service *{
+    display: inline;
+}
+
+.submitAll {
+    margin-left :-15px;
+    background-color: white;
+    border: dotted 1px blue;
+    color: blue;
+    display: block;
+}
 .fa-trash{
     color: red;
 }

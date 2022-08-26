@@ -103,9 +103,6 @@ class ServiceController extends Controller
         $model = new Service();
 
         if ($this->request->isPost) {
-            echo "<pre>";
-            print_r($_POST);
-            exit;
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

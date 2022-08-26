@@ -157,7 +157,7 @@ class QuotationController extends Controller
     ->setFormat(Client::FORMAT_JSON)
     ->setUrl('http://api.pdf-generator.saturuangdigital.id/generate')
     ->setData([
-        "url" => "http://27.54.117.163:7010/index.php?r=quotation%2Fgen-pdf&id=2&token=1234",
+        "url" => "http://27.54.117.163:7010/index.php?r=quotation%2Fgen-pdf&id=".$id."&token=1234",
         "contentOptions" => [
             "contentDispotition" => "attachment"
         ]
@@ -177,9 +177,9 @@ class QuotationController extends Controller
     {
         $model = new Quotation();
         
-        if ($this->request->isPost) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
             $id_service = $_POST["Quotation"]['id_service'];
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->save()) {
                 for($i=0; $i < count($id_service) ; $i++) { 
                     $table_quot = new TableQuotService();
                     foreach ($id_service as $key) {
